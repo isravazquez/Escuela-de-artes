@@ -1,7 +1,5 @@
-const { Sequelize, DataTypes, Op } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db')
-
-const Actividad = require('./Actividad')
 
 // Maestro
 const Maestro = sequelize.define('Maestro', {

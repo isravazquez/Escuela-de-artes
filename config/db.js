@@ -1,7 +1,4 @@
-/* 
-CONEXIÓN A LA BASE DE DATOS
-*/
-
+//CONEXIÓN A LA BASE DE DATOS
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize(
