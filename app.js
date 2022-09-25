@@ -301,6 +301,34 @@ app.get('/alumnos/:nombre', async(req, res) => { //id
     res.status(201).json(alumnos[id.toString()]);
 });
 
+// INSCRIPCIONES - Consulta general
+app.get('/inscripciones', async(req, res) => {
+    const inscripciones = await Inscripcion.findAll();
+    const alumno_id = req.query.alumno_id;                         //para un alumno en particular
+    const actividad_id = req.query.actividad_id;                   //para una actividad en particular
+
+    console.log('alumno', alumno_id)
+    console.log('actividad', actividad_id)
+
+    //filtra las actividades de un alumno en particular
+    if (alumno_id) {
+        let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].alumno_id == alumno_id);  ////tipo dato diferente po eso condición con ==
+        inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
+        res.json(inscripciones_filtrados);
+        return;
+    }
+
+    //filtra los alumns para una actividad en particlar
+    if (actividad_id) {
+        let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].actividad_id == actividad_id );  //tipo dato diferente po eso condición con ==
+        inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
+        res.json(inscripciones_filtrados);
+        return;
+    }
+    res.json(inscripciones);
+    return;
+});
+
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
 });
