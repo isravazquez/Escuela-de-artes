@@ -9,7 +9,6 @@ app.use('/', routes);
 
 //Body Parser
 const bodyParser = require('body-parser');
-//const { route } = require("./routes/inscripcion");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //Conexión a la base de datos con try/catch
