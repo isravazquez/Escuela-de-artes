@@ -343,19 +343,40 @@ app.post('/crearInscripcion', async(req, res) => {
         }
     });
 
-    // console.log("inscripciones: ",inscripciones);
-
-    if(inscripciones.length !== 0) {
+     if(inscripciones.length !== 0) {
         console.log("Inscripción ya exite");
         res.status(200).json({RespuestaAlta: "Inscripción ya existe"});
         return;
     };
-    //alumnos[id.toString()] = data;
+  
     const inscripcionNueva = Object.assign({}, data);
     console.log()
     Inscripcion.create(inscripcionNueva);
 
     res.status(201).json({RespuestaAlta: "Inscripción se registró satisfactoriamente"});
+});
+
+app.delete('/borrarInscripcion/:id', (req, res) => {
+    const inscripcion_id = req.params.id;
+    console.log(inscripcion_id);
+     const deleted = Inscripcion.destroy(
+        { where: { id: inscripcion_id } }
+    ).then(function (rowDeleted) {
+        if (rowDeleted === 1) {
+            console.log("Borrado satisfactorio"),
+                res.status(200).json(deleted);
+                return;
+        }
+        else {
+            res.status(200).json("Registro no encontrado");
+            return;
+        }
+    }, function (err) {
+        console.log(err),
+            res.status(404).json({ error: "registro no eliminado" });
+            return;
+    }); 
+    return;
 });
 
 app.listen(PORT, () => {
