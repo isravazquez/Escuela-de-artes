@@ -246,6 +246,47 @@ Resena.belongsTo(Actividad, {
 
 await sequelize.sync();
 
+//Vista inscripción por Id relacinado a Actividad y Alumno  (despues del sync para que no se cree como tabla)
+const vInscripcion_ById = sequelize.define('vinscripcion_byid', {
+    inscripcion_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+    },
+    alumno_id: {
+        type: DataTypes.INTEGER,
+    },
+    alumno_nombre: {
+        type: DataTypes.TEXT,
+    },
+    alumno_apellido: {
+        type: DataTypes.TEXT,
+    },
+    actividad_id: {
+        type: DataTypes.INTEGER,
+    },
+    actividad_nombre: {
+        type: DataTypes.TEXT,
+    },
+    actividad_costo: {
+        type: DataTypes.INTEGER,
+    },
+    actividad_descripcion: {
+        type: DataTypes.TEXT,
+    },
+    maestro_id: {
+        type: DataTypes.INTEGER,
+    },
+    maestro_nombre: {
+        type: DataTypes.TEXT,
+    },
+    maestro_apellido: {
+        type: DataTypes.TEXT,
+     }
+}, {
+    freezeTableName: true,
+    timestamps: false
+});
+
 //Express configuration
 const app = express();
 const PORT = 3000;
@@ -319,7 +360,7 @@ app.get('/inscripciones', async(req, res) => {
         return;
     }
 
-    //filtra los alumns para una actividad en particlar
+    //filtra los alumnos para una actividad en particlar
     if (actividad_id) {
         let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].actividad_id == actividad_id );  //tipo dato diferente po eso condición con ==
         inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
@@ -378,6 +419,46 @@ app.delete('/borrarInscripcion/:id', (req, res) => {
     }); 
     return;
 });
+
+// INSCRIPCIONES - Consulta inscripciones a detalle por la vita (relaciona datos de alumnos y de actividades)
+app.get('/inscripciones_Detalle', async (req, res) => {
+    const inscripciones = await vInscripcion_ById.findAll();
+    const alumno_id = req.query.alumno_id;                         //para un alumno en particular
+    const actividad_id = req.query.actividad_id;                   //para una actividad en particular
+    const maestro_id = req.query.maestro_id;                       //para un maestro en particular
+
+    console.log('alumno', alumno_id)
+    console.log('actividad', actividad_id)
+    console.log('maestro', maestro_id)
+
+    //filtra las actividades de un alumno en particular
+    if (alumno_id) {
+        let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].alumno_id == alumno_id);  ////tipo dato diferente, condición con ==
+        inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
+        res.json(inscripciones_filtrados);
+        return;
+    }
+
+    //filtra los alumnos para una actividad en particlar
+    if (actividad_id) {
+        let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].actividad_id == actividad_id);  //tipo dato diferente, condición con ==
+        inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
+        res.json(inscripciones_filtrados);
+        return;
+    }
+
+    //filtra los maestro para una actividad en particlar
+    if (maestro_id) {
+        let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].maestro_id == maestro_id);  //tipo dato diferente, condición con ==
+        inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
+        res.json(inscripciones_filtrados);
+        return;
+    }
+
+    res.json(inscripciones);
+    return;
+});
+
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
