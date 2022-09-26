@@ -150,7 +150,8 @@ const Inscripcion = sequelize.define('Inscripcion', {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        autoIncrementIdentity: true,
     },
     alumno_id: {
         type: DataTypes.INTEGER,
@@ -327,6 +328,34 @@ app.get('/inscripciones', async(req, res) => {
     }
     res.json(inscripciones);
     return;
+});
+
+// INSCRIPCIONES - Crear inscripción (solo si no existe)
+app.post('/crearInscripcion', async(req, res) => {  
+    const data = req.body;
+    console.log(data);
+    console.log("AlumnoId: ", data.alumno_id);
+    console.log("actividad_id: ", data.actividad_id);
+     const inscripciones = await Inscripcion.findAll({
+         where: { 
+            alumno_id: data.alumno_id,
+            actividad_id: data.actividad_id 
+        }
+    });
+
+    // console.log("inscripciones: ",inscripciones);
+
+    if(inscripciones.length !== 0) {
+        console.log("Inscripción ya exite");
+        res.status(200).json({RespuestaAlta: "Inscripción ya existe"});
+        return;
+    };
+    //alumnos[id.toString()] = data;
+    const inscripcionNueva = Object.assign({}, data);
+    console.log()
+    Inscripcion.create(inscripcionNueva);
+
+    res.status(201).json({RespuestaAlta: "Inscripción se registró satisfactoriamente"});
 });
 
 app.listen(PORT, () => {
