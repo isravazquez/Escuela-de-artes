@@ -1,16 +1,21 @@
 /* APP: Configuraciones principales */
 //Express configuration
 const express = require("express");
+//Sequelize Configuration
 const sequelize = require('./config/db')
+//Routes require
 const routes = require('./routes')
-const app = express();
-app.use(express.json());
-app.use('/', routes);
 
-//Body Parser
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+//App puesta en marcha
+const app = express();
+
+//Configración de rutas
+app.use('/', routes)
+
+//Configuración para los métodos POST
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 //Conexión a la base de datos con try/catch
 try {
     sequelize.authenticate();
