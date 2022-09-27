@@ -13,8 +13,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//Configración de rutas
-app.use('/', routes)
+//Configuración de rutas
+app.use('/v1', routes)
 
 
 

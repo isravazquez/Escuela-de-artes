@@ -46,7 +46,7 @@ async function obtenerMaestros(req, res) {
     const nombre = req.query.nombre;
     const apellido = req.query.apellido;
     const email = req.query.email;
-    const maestros = await Maestro.findAll();
+    const maestros = await Maestro.findAll({order: ['id']});
     if (!maestros) {
         res.status(404).json({ error: 'Lista de maestros vacia' });
         return;

@@ -47,7 +47,7 @@ async function borrarResena(req, res) {
 
 // RESEÑAS - Consulta general
 async function consultarResenas(req, res) {
-    const resenas = await Resena.findAll();
+    const resenas = await Resena.findAll({order: ['id']});
     const alumno_id = req.query.alumno_id;                         //para un alumno en particular
     const actividad_id = req.query.actividad_id;                   //para una actividad en particular
 

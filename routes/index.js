@@ -5,14 +5,14 @@ const actividades = require('./actividad');
 const inscripciones = require('./inscripcion');
 const resenas = require('./resena');
 
-router.get('/', (req, res) => {
+router.get('/', (req, res) => { 
     res.json({'info': '¡Bienvenido a la API de la Escuela de Arte!'})
 });
 
-router.use('/v1/alumnos', alumnos);
-router.use('/v1/actividades', actividades);
-router.use('/v1/maestros', maestros);
-router.use('/v1/inscripciones', inscripciones);
-router.use('/v1/resenas', resenas);
+router.use('/alumnos', alumnos);
+router.use('/actividades', actividades);
+router.use('/maestros', maestros);
+router.use('/inscripciones', inscripciones);
+router.use('/resenas', resenas);
 
 module.exports = router;

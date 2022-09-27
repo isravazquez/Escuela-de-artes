@@ -46,7 +46,7 @@ async function obtenerAlumnos(req, res) {
     const nombre = req.query.nombre;
     const apellido = req.query.apellido;
     const email = req.query.email;
-    const alumnos = await Alumno.findAll();
+    const alumnos = await Alumno.findAll({order: ['id']});
     if (!alumnos) {
         res.status(404).json({ error: 'Lista de alumnos vacia' });
         return;

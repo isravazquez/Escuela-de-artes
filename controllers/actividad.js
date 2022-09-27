@@ -45,7 +45,7 @@ async function obtenerActividades(req, res) {
     const nombre = req.query.nombre;
     const maestro_id = req.query.maestro_id;
     const costo = req.query.costo;
-    const actividades = await Actividad.findAll();
+    const actividades = await Actividad.findAll({order: ['id']});
     if (!actividades) {
         res.status(404).json({ error: 'Lista de actividades vacia' });
         return;
