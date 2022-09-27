@@ -9,17 +9,19 @@ const routes = require('./routes')
 //App puesta en marcha
 const app = express();
 
-//Configración de rutas
-app.use('/', routes)
-
 //Configuración para los métodos POST
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//Configración de rutas
+app.use('/', routes)
+
+
+
 //Conexión a la base de datos con try/catch
 try {
     sequelize.authenticate();
-    sequelize.sync();
+//    sequelize.sync();
     console.log('La conexion fue exitosa');
 } catch (error) {
     console.error('Hubo un problema con la conexión', error);
