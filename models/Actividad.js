@@ -41,11 +41,27 @@ const Actividad = sequelize.define('Actividad', {
     timestamps: false
 });
 
-Maestro.hasMany(Actividad)
-Actividad.belongsTo(Maestro)
+Maestro.hasMany(Actividad, {
+    foreignKey:{
+        name: 'maestro_id'
+    }
+})
+Actividad.belongsTo(Maestro, {
+    foreignKey:{
+        name: 'maestro_id',
+    }
+})
 
 // ASOCIACIONES
-Resena.belongsTo(Actividad)
-Actividad.hasMany(Resena)
+Resena.belongsTo(Actividad, {
+    foreignKey:{
+        name: 'actividad_id'
+    }
+})
+Actividad.hasMany(Resena, {
+    foreignKey:{
+        name: 'actividad_id'
+    }
+})
 
 module.exports = Actividad;
