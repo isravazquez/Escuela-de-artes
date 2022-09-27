@@ -9,7 +9,8 @@ const Inscripcion = sequelize.define('Inscripcion', {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        autoIncrementIdentity: true,
     },
     alumno_id: {
         type: DataTypes.INTEGER,
@@ -25,7 +26,15 @@ const Inscripcion = sequelize.define('Inscripcion', {
 });
 
 // ASOCIACIONES
-Inscripcion.belongsTo(Actividad)
-Actividad.hasMany(Inscripcion)
+Inscripcion.belongsTo(Actividad, {
+    foreignKey:{
+        name: 'actividad_id'
+    }
+})
+Actividad.hasMany(Inscripcion, {
+    foreignKey:{
+        name: 'actividad_id'
+    }
+})
 
 module.exports = Inscripcion;
