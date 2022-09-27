@@ -48,6 +48,10 @@ async function borrarInscripcion(req, res) {
 // INSCRIPCIONES - Consulta general
 async function consultarInscripciones(req, res) {
     const inscripciones = await Inscripcion.findAll();
+
+    console.log('entro en inscripciones')
+
+
     const alumno_id = req.query.alumno_id;                         //para un alumno en particular
     const actividad_id = req.query.actividad_id;                   //para una actividad en particular
 

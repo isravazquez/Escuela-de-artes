@@ -24,6 +24,7 @@
     "express": "^4.18.1",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
+    "routerjs": "^2.4.5",
     "sequelize": "^6.23.1"
   },
   "devDependencies": {

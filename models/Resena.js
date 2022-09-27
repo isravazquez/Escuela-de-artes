@@ -7,7 +7,8 @@ const Resena = sequelize.define('Resena', {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        autoIncrementIdentity: true
     },
     alumno_id: {
         type: DataTypes.INTEGER,

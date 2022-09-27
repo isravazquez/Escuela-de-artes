@@ -3,10 +3,10 @@ const {
     crearResena,
     borrarResena,
     consultarResenas,
-} = require('../controllers/inscripcion')
+} = require('../controllers/resena')
 
+router.get('/', consultarResenas);
 router.post('/', crearResena);
 router.delete('/:id', borrarResena);
-router.get('/', consultarResenas);
 
 module.exports = router;

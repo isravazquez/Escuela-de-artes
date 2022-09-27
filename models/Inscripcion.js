@@ -10,7 +10,7 @@ const Inscripcion = sequelize.define('Inscripcion', {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        autoIncrementIdentity: true
+        autoIncrementIdentity: true,
     },
     alumno_id: {
         type: DataTypes.INTEGER,

@@ -4,7 +4,7 @@ const Resena = require('../models/Resena')
 async function crearResena(req, res) {
     const data = req.body;
 
-/*     const inscripciones = await Inscripcion.findOne({
+     const inscripciones = await Inscripcion.findOne({
         where: {
             alumno_id: data.alumno_id,
             actividad_id: data.actividad_id
@@ -14,7 +14,7 @@ async function crearResena(req, res) {
     if (inscripciones) {
         res.status(200).json({ RespuestaAlta: "Inscripción ya existe" });
         return;
-    }; */
+    }; 
 
     const resena = Resena.create(data);
 
@@ -77,5 +77,5 @@ async function consultarResenas(req, res) {
 module.exports = {
     crearResena,
     borrarResena,
-    consultarResenas,
+    consultarResenas
 }
