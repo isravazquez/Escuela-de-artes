@@ -49,12 +49,12 @@ Inscripcion.belongsTo(Alumno, {
 
 Alumno.hasMany(Resena, {
     foreignKey:{
-        name: 'resena_id'
+        name: 'alumno_id'
     }
 })
 Resena.belongsTo(Alumno, {
     foreignKey:{
-        name: 'resena_id'
+        name: 'alumno_id'
     }
 })
 

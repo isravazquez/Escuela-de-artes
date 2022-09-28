@@ -1,4 +1,6 @@
-const Actividad = require('../models/Actividad')
+const Actividad = require('../models/Actividad');
+const Inscripcion = require('../models/Inscripcion');
+const Resena = require('../models/Resena');
 
 async function crearActividad(req, res) {  //Funciona sin mandar un id en el header pero en el body de la peticion si debe de llevar un valor forzozamente el id
     const body = req.body;
@@ -80,10 +82,61 @@ async function obtenerActividad(req, res) {
     return;
 }
 
+async function detalleInscripciones(req,res){
+    const idActividad = req.params.id;
+    const idInscripcion = req.params.idInscripcion
+    if(idInscripcion === undefined){
+        const actividad = await Actividad.findByPk(idActividad, {
+            include: {
+                model: Inscripcion
+            }
+        });
+        res.status(200).json(actividad);
+        return;
+    }
+    const actividad = await Actividad.findByPk(idActividad, {
+        include: {
+            model: Inscripcion,
+            where: {
+                id: idInscripcion
+            }
+        }
+    });
+    res.status(200).json(actividad);
+    return;
+}
+
+async function detalleResenas(req,res){
+    const idActividad = req.params.id;
+    const idResena = req.params.idResena
+
+    if(idResena === undefined){
+        const actividad = await Actividad.findByPk(idActividad, {
+            include: {
+                model: Resena
+            }
+        });
+        res.status(200).json(actividad);
+        return;
+    }
+    const actividad = await Actividad.findByPk(idActividad, {
+        include: {
+            model: Resena,
+            where: {
+                id: idResena
+            }
+        }
+    });
+    res.status(200).json(actividad);
+    return;
+}
+
 module.exports = {
     crearActividad,
     actualizarActividad,
     eliminarActividad,
     obtenerActividades,
-    obtenerActividad
+    obtenerActividad,
+    detalleInscripciones,
+    detalleResenas
 }
