@@ -1,4 +1,5 @@
 const Maestro = require('../models/Maestro')
+const Actividad = require('../models/Actividad');
 
 async function crearMaestro(req, res) {  //Funciona sin mandar un id en el header pero en el body de la peticion si debe de llevar un valor forzozamente el id
     const body = req.body;
@@ -81,10 +82,37 @@ async function obtenerMaestro(req, res) {
     return;
 }
 
+async function detalleActividades(req,res){
+    const idMaestro = req.params.id;
+    const idActividad = req.params.idActividad
+
+    if(idActividad === undefined){
+        const maestro = await Maestro.findByPk(idMaestro, {
+            include: {
+                model: Actividad
+            }
+        });
+        res.status(200).json(maestro);
+        return;
+    }
+    const maestro = await Maestro.findByPk(idMaestro, {
+        include: {
+            model: Actividad,
+            where: {
+                id: idActividad
+            }
+        }
+    });
+    res.status(200).json(maestro);
+    return;
+}
+
+
 module.exports = {
     crearMaestro,
     actualizarMaestro,
     eliminarMaestro,
     obtenerMaestros,
-    obtenerMaestro
+    obtenerMaestro,
+    detalleActividades
 }
