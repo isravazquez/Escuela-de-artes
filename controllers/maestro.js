@@ -82,7 +82,7 @@ async function obtenerMaestro(req, res) {
     return;
 }
 
-async function detalleInscripciones(req,res){
+async function detalleActividades(req,res){
     const idMaestro = req.params.id;
     const idActividad = req.params.idActividad
 
@@ -114,5 +114,5 @@ module.exports = {
     eliminarMaestro,
     obtenerMaestros,
     obtenerMaestro,
-    detalleInscripciones
+    detalleActividades
 }

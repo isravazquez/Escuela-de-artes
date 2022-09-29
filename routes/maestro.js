@@ -5,7 +5,7 @@ const {
     eliminarMaestro,
     obtenerMaestros,
     obtenerMaestro,
-    detalleInscripciones
+    detalleActividades
 } = require('../controllers/maestro')
 
 //Crear nuevo Maestro
@@ -22,6 +22,6 @@ router.get('/:id', obtenerMaestro);
 
 //Detalle de actividades de cada maestro
 //Si se agrega el id de la actividad se mostrara exclusivamente
-router.get('/:id/actividades/:idActividad?', detalleInscripciones);
+router.get('/:id/actividades/:idActividad?', detalleActividades);
 
 module.exports = router;
