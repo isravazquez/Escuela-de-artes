@@ -1,11 +1,18 @@
 const Actividad = require('../models/Actividad')
+const Maestro = require('../models/Maestro')
+
 
 async function crearActividad(req, res) {  //Funciona sin mandar un id en el header pero en el body de la peticion si debe de llevar un valor forzozamente el id
     const body = req.body;
     const verificacionNombre = await Actividad.findOne({ where: { nombre: body.nombre } });
+    const verificacionMaestro = await Maestro.findByPk(body.maestro_id);
 
     if (verificacionNombre) {
         res.status(404).json({ error: 'Actividad ya registrada' }); //No se si el estatus 404 es correcto para este error
+        return;
+    }
+    if (!verificacionMaestro) {
+        res.status(404).json({ error: 'Maestro no encontrado, la actividad no puede ser registrada' });
         return;
     }
     const actividad = await Actividad.create(body);
