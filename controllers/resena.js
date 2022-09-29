@@ -4,46 +4,53 @@ const Resena = require('../models/Resena')
 async function crearResena(req, res) {
     const data = req.body;
 
-     const inscripciones = await Inscripcion.findOne({
-        where: {
-            alumno_id: data.alumno_id,
-            actividad_id: data.actividad_id
-        }
-    });
+    const resena = await Resena.create(data);
 
-    if (inscripciones) {
-        res.status(200).json({ RespuestaAlta: "Inscripción ya existe" });
-        return;
-    }; 
+    res.status(201).json({status: 'reseña creada con éxito', resena});
 
-    const resena = Resena.create(data);
-
-    res.status(201).json(resena);
     return;
 };
 
 async function borrarResena(req, res) {
     const resena_id = req.params.id;
-    console.log(resena_id);
-     const deleted = Resena.destroy(
-        { where: { id: resena_id } }
-    ).then(function (rowDeleted) {
-        if (rowDeleted === 1) {
-            console.log("Borrado satisfactorio"),
-                res.status(200).json(deleted);
-                return;
+
+    const resena = await Resena.findByPk(resena_id);
+    if (!resena) {
+        res.status(404).json({ error: `Reseña ${resena_id} no existe` });
+        return;
+    };
+
+    try {
+        const deleted = await Resena.destroy(
+            { where: { id: resena_id } }
+        )
+        if (deleted === 1) {
+            res.status(200).json({status: `id reseña ${resena_id} borrada con éxito`, resena});
+
         }
-        else {
-            res.status(200).json("Registro no encontrado");
-            return;
+        else if(deleted === 0) {
+            res.status(200).json({status: `id reseña ${resena_id} no fue eliminada`, resena});
         }
-    }, function (err) {
-        console.log(err),
-            res.status(404).json({ error: "registro no eliminado" });
-            return;
-    }); 
-    return;
+        return;
+    } catch (err) {
+        res.status(400).json(err);
+        return;
+    }
 };
+
+async function actualizarResena(req, res) {
+    const id = req.params.id;
+    const resena_actualizar = req.body;
+    const resena = await Resena.findByPk(id);
+    if (!resena) {
+        res.status(404).json({ error: `Reseña ${id} no existe` });
+        return;
+    }
+    await Resena.update(resena_actualizar, { where: { id } });
+    const resena_actualizada = await Resena.findByPk(id);
+    res.status(200).json(resena_actualizada);
+    return;
+}
 
 // RESEÑAS - Consulta general
 async function consultarResenas(req, res) {
@@ -74,8 +81,21 @@ async function consultarResenas(req, res) {
     return;
 };
 
+async function consultarResena(req, res) {
+    const id = req.params.id;
+    const resena = await Resena.findByPk(id);
+    if (!resena) {
+        res.status(404).json({ error: 'Reseña no existe' });
+        return;
+    }
+    res.status(200).json(resena);
+    return;
+}
+
 module.exports = {
+    consultarResenas,
+    consultarResena,
     crearResena,
     borrarResena,
-    consultarResenas
+    actualizarResena,
 }

@@ -12,50 +12,68 @@ async function crearInscripcion(req, res) {
     });
 
     if (inscripciones) {
-        res.status(200).json({ RespuestaAlta: "Inscripción ya existe" });
+        res.status(404).json({ error: "Inscripción ya existe", inscripciones });
         return;
     };
 
-    const inscripcion = Inscripcion.create(data);
-
-    res.status(201).json(inscripcion);
-    return;
+    try {
+        const inscripcion = await Inscripcion.create(data)
+        res.status(201).json({status: 'Inscripcion creada con éxito', inscripcion});
+        return;
+    } catch (err) {
+        res.status(400).json(err);
+        return;
+    }
 };
 
 async function borrarInscripcion(req, res) {
     const inscripcion_id = req.params.id;
-    console.log(inscripcion_id);
-     const deleted = Inscripcion.destroy(
-        { where: { id: inscripcion_id } }
-    ).then(function (rowDeleted) {
-        if (rowDeleted === 1) {
-            console.log("Borrado satisfactorio"),
-                res.status(200).json(deleted);
-                return;
+
+    const inscripcion = await Inscripcion.findByPk(inscripcion_id);
+    if (!inscripcion) {
+        res.status(404).json({ error: `Inscripción ${inscripcion_id} no existe` });
+        return;
+    };
+
+    try {
+        const deleted = await Inscripcion.destroy(
+            { where: { id: inscripcion_id } }
+        )
+        if (deleted === 1) {
+            res.status(200).json({status: `id inscripción ${inscripcion_id} borrada con éxito`, inscripcion});
+
         }
-        else {
-            res.status(200).json("Registro no encontrado");
-            return;
+        else if(deleted === 0) {
+            res.status(200).json({status: `id inscripción ${inscripcion_id} no fue eliminada`, inscripcion});
         }
-    }, function (err) {
-        console.log(err),
-            res.status(404).json({ error: "registro no eliminado" });
-            return;
-    }); 
-    return;
+        return;
+    } catch (err) {
+        res.status(400).json(err);
+        return;
+    }
 };
+
+async function actualizarInscripcion(req, res) {
+    const id = req.params.id;
+    const inscripcion_actualizar = req.body;
+    const inscripcion = await Inscripcion.findByPk(id);
+    if (!inscripcion) {
+        res.status(404).json({ error: `Inscripción ${id} no existe` });
+        return;
+    }
+    await Inscripcion.update(inscripcion_actualizar, { where: { id } });
+    const inscripcion_actualizada = await Inscripcion.findByPk(id);
+    res.status(200).json(inscripcion_actualizada);
+    return;
+}
 
 // INSCRIPCIONES - Consulta general
 async function consultarInscripciones(req, res) {
     const inscripciones = await Inscripcion.findAll({order: ['id']});
 
-    console.log('entro en inscripciones')
-
-
     const alumno_id = req.query.alumno_id;                         //para un alumno en particular
     const actividad_id = req.query.actividad_id;                   //para una actividad en particular
 
-    console.log(inscripciones);
     if (!inscripciones) {
         res.status(404).json({ error: 'Lista de actividades vacia' });
         return;
@@ -90,8 +108,9 @@ async function consultarInscripcion(req, res) {
 }
 
 module.exports = {
+    consultarInscripciones,
+    consultarInscripcion,
     crearInscripcion,
     borrarInscripcion,
-    consultarInscripciones,
-    consultarInscripcion
-}
+    actualizarInscripcion,
+ }

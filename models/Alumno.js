@@ -47,7 +47,7 @@ Inscripcion.belongsTo(Alumno, {
     }
 })
 
-Alumno.hasMany(Resena, {
+/* Alumno.hasMany(Resena, {
     foreignKey:{
         name: 'resena_id'
     }
@@ -56,6 +56,6 @@ Resena.belongsTo(Alumno, {
     foreignKey:{
         name: 'resena_id'
     }
-})
+}) */
 
 module.exports = Alumno;
