@@ -7,10 +7,10 @@ const {
     consultarResena
 } = require('../controllers/resena')
 
-router.get('/consultarTodas', consultarResenas);
-router.get('/consultarPorId/:id', consultarResena);
-router.post('/crear', crearResena);
-router.patch('/actualizar/:id', actualizarResena);
-router.delete('/borrar/:id', borrarResena);
+router.get('/', consultarResenas);
+router.get('/:id', consultarResena);
+router.post('/', crearResena);
+router.patch('/:id', actualizarResena);
+router.delete('/:id', borrarResena);
 
 module.exports = router;
