@@ -58,7 +58,6 @@ async function consultarResenas(req, res) {
     const alumno_id = req.query.alumno_id;                         //para un alumno en particular
     const actividad_id = req.query.actividad_id;                   //para una actividad en particular
 
-    console.log(resenas);
     if (!resenas) {
         res.status(404).json({ error: 'Lista de reseñas vacia' });
         return;
