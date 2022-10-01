@@ -1,11 +1,9 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/db')
 
-const Inscripcion = require('./Inscripcion')
-const Resena = require('./Resena')
 
 //Alumno
-const Alumno = sequelize.define('Alumno', {
+const Administrador = sequelize.define('Administrador', {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -35,27 +33,4 @@ const Alumno = sequelize.define('Alumno', {
 });
 
 
-// ASOCIACIONES
-Alumno.hasMany(Inscripcion, {
-    foreignKey:{
-        name: 'alumno_id'
-    }
-})
-Inscripcion.belongsTo(Alumno, {
-    foreignKey:{
-        name: 'alumno_id'
-    }
-})
-
-Alumno.hasMany(Resena, {
-    foreignKey:{
-        name: 'alumno_id'
-    }
-})
-Resena.belongsTo(Alumno, {
-    foreignKey:{
-        name: 'alumno_id'
-    }
-})
-
-module.exports = Alumno;
+module.exports = Administrador;

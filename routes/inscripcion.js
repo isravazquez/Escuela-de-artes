@@ -7,10 +7,10 @@ const {
     consultarInscripcion
 } = require('../controllers/inscripcion')
 
-router.get('/consultarTodas', consultarInscripciones);
-router.get('/consultarPorId/:id', consultarInscripcion);
-router.post('/crear', crearInscripcion);
-router.delete('/borrar/:id', borrarInscripcion);
-router.patch('/actualizar/:id', actualizarInscripcion);
+router.get('/', consultarInscripciones);
+router.get('/:id', consultarInscripcion);
+router.post('/', crearInscripcion);
+router.delete('/:id', borrarInscripcion);
+router.patch('/:id', actualizarInscripcion);
 
 module.exports = router;
