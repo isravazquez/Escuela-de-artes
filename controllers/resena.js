@@ -11,7 +11,7 @@ async function crearResena(req, res) {
     return;
 };
 
-async function borrarResena(req, res) {
+async function eliminarResena(req, res) {
     const resena_id = req.params.id;
 
     const resena = await Resena.findByPk(resena_id);
@@ -53,7 +53,7 @@ async function actualizarResena(req, res) {
 }
 
 // RESEÑAS - Consulta general
-async function consultarResenas(req, res) {
+async function obtenerResenas(req, res) {
     const resenas = await Resena.findAll({order: ['id']});
     const alumno_id = req.query.alumno_id;                         //para un alumno en particular
     const actividad_id = req.query.actividad_id;                   //para una actividad en particular
@@ -80,7 +80,7 @@ async function consultarResenas(req, res) {
     return;
 };
 
-async function consultarResena(req, res) {
+async function obtenerResena(req, res) {
     const id = req.params.id;
     const resena = await Resena.findByPk(id);
     if (!resena) {
@@ -92,9 +92,9 @@ async function consultarResena(req, res) {
 }
 
 module.exports = {
-    consultarResenas,
-    consultarResena,
     crearResena,
-    borrarResena,
     actualizarResena,
+    eliminarResena,
+    obtenerResenas,
+    obtenerResena, 
 }

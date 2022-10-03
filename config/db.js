@@ -3,10 +3,10 @@ const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize(
     {
-        database: 'dcqvm933h8f45r',
-        username: 'kqqvpkqxzglgib',
-        password: 'b04d4c316e736f559a24043453f4e325683b3db1e0bbeedca9d259b3a93789b1', 
-        host: 'ec2-54-160-200-167.compute-1.amazonaws.com',
+        database: 'd6ngrbdemus4t',
+        username: 'gvkygiydeafspu',
+        password: 'cc918e8889847c1f55d84354d123b5514e487d87f2f1f21574dd6f0d2cfccd27', 
+        host: 'ec2-3-209-39-2.compute-1.amazonaws.com',
         port: 5432,
         ssl: true,
         dialect: 'postgres',

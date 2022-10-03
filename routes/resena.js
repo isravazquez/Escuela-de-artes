@@ -1,16 +1,23 @@
 const router = require('express').Router();
 const {
     crearResena,
-    borrarResena,
     actualizarResena,
-    consultarResenas,
-    consultarResena
+    eliminarResena,
+    obtenerResenas,
+    obtenerResena
 } = require('../controllers/resena')
 
-router.get('/', consultarResenas);
-router.get('/:id', consultarResena);
+//Crear reseña
 router.post('/', crearResena);
-router.patch('/:id', actualizarResena);
-router.delete('/:id', borrarResena);
+//Actualizar reseña
+router.patch('/:id', actualizarResena)
+//Eliminar reseña
+router.delete('/:id', eliminarResena);
+
+//Obtener todas las reseñas
+//filtrado de reseñas por alumno o actividad por el body
+router.get('/', obtenerResenas);
+//Obtener reseña por id
+router.get('/:id', obtenerResena);
 
 module.exports = router;

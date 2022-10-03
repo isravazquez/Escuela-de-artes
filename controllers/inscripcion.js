@@ -26,7 +26,7 @@ async function crearInscripcion(req, res) {
     }
 };
 
-async function borrarInscripcion(req, res) {
+async function eliminarInscripcion(req, res) {
     const inscripcion_id = req.params.id;
 
     const inscripcion = await Inscripcion.findByPk(inscripcion_id);
@@ -68,7 +68,7 @@ async function actualizarInscripcion(req, res) {
 }
 
 // INSCRIPCIONES - Consulta general
-async function consultarInscripciones(req, res) {
+async function obtenerInscripciones(req, res) {
     const inscripciones = await Inscripcion.findAll({order: ['id']});
 
     const alumno_id = req.query.alumno_id;                         //para un alumno en particular
@@ -96,7 +96,7 @@ async function consultarInscripciones(req, res) {
     return;
 };
 
-async function consultarInscripcion(req, res) {
+async function obtenerInscripcion(req, res) {
     const id = req.params.id;
     const inscripcion = await Inscripcion.findByPk(id);
     if (!inscripcion) {
@@ -108,9 +108,9 @@ async function consultarInscripcion(req, res) {
 }
 
 module.exports = {
-    consultarInscripciones,
-    consultarInscripcion,
     crearInscripcion,
-    borrarInscripcion,
     actualizarInscripcion,
+    eliminarInscripcion,
+    obtenerInscripciones,
+    obtenerInscripcion,
  }
