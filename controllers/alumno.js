@@ -2,18 +2,15 @@ const Alumno = require('../models/Alumno');
 const Inscripcion = require('../models/Inscripcion');
 const Resena = require('../models/Resena');
 
-async function crearAlumno(req, res) {  //Funciona sin mandar un id en el header pero en el body de la peticion si debe de llevar un valor forzozamente el id
+async function crearAlumno(req, res) {      
     const body = req.body;
-    const verificacionEmail = await Alumno.findOne({ where: { email: body.email } });
-    const verificacionNombre = await Alumno.findOne({ where: { nombre: body.nombre, apellido: body.apellido } });
-
-    if (verificacionEmail || verificacionNombre) {
-        res.status(404).json({ error: 'Alumno ya registrado' }); //No se si el estatus 404 es correcto para este error
+    try {
+        const alumno = await Alumno.create(body);
+        res.status(201).json(alumno);
         return;
+    } catch (err) {
+        res.status(400).json({ error: err.name });
     }
-    const alumno = await Alumno.create(body);
-    res.status(201).json(alumno);
-    return;
 }
 
 async function actualizarAlumno(req, res) {
@@ -24,10 +21,14 @@ async function actualizarAlumno(req, res) {
         res.status(404).json({ error: 'Alumno no encontrado' });
         return;
     }
-    await Alumno.update(cambioSolicitado, { where: { id } });
-    const alumno_actualizado = await Alumno.findByPk(id);
-    res.status(200).json(alumno_actualizado);
-    return;
+    try {
+        await Alumno.update(cambioSolicitado, { where: { id } });
+        const alumno_actualizado = await Alumno.findByPk(id);
+        res.status(200).json(alumno_actualizado);
+        return;
+    } catch (err) {
+        res.status(400).json({ error: err.name });
+    }
 }
 
 async function eliminarAlumno(req, res) {
@@ -48,21 +49,24 @@ async function obtenerAlumnos(req, res) {
     const nombre = req.query.nombre;
     const apellido = req.query.apellido;
     const email = req.query.email;
-    const alumnos = await Alumno.findAll({order: ['id']});
+    const alumnos = await Alumno.findAll({ order: ['id'] });
     if (!alumnos) {
         res.status(404).json({ error: 'Lista de alumnos vacia' });
         return;
-    } else if (nombre) {
+    } 
+    if (nombre) {
         let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].nombre === nombre);
         alumnos_filtrados = Object.fromEntries(alumnos_filtrados);
         res.json(alumnos_filtrados);
         return;
-    } else if (apellido) {
+    } 
+    if (apellido) {
         let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].apellido === apellido);
         alumnos_filtrados = Object.fromEntries(alumnos_filtrados);
         res.json(alumnos_filtrados);
         return;
-    } else if (email) {
+    } 
+    if (email) {
         let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].email === email);
         alumnos_filtrados = Object.fromEntries(alumnos_filtrados);
         res.json(alumnos_filtrados);
@@ -83,10 +87,10 @@ async function obtenerAlumno(req, res) {
     return;
 }
 
-async function detalleInscripciones(req,res){
+async function detalleInscripciones(req, res) {
     const idAlumno = req.params.id;
     const idInscripcion = req.params.idInscripcion
-    if(idInscripcion === undefined){
+    if (idInscripcion === undefined) {
         const alumno = await Alumno.findByPk(idAlumno, {
             include: {
                 model: Inscripcion
@@ -107,11 +111,11 @@ async function detalleInscripciones(req,res){
     return;
 }
 
-async function detalleResenas(req,res){
+async function detalleResenas(req, res) {
     const idAlumno = req.params.id;
     const idResena = req.params.idResena
 
-    if(idResena === undefined){
+    if (idResena === undefined) {
         const alumno = await Alumno.findByPk(idAlumno, {
             include: {
                 model: Resena

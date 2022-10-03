@@ -7,22 +7,15 @@ const Inscripcion = require('../models/Inscripcion');
 const Resena = require('../models/Resena');
 
 
-async function crearActividad(req, res) {  //Funciona sin mandar un id en el header pero en el body de la peticion si debe de llevar un valor forzozamente el id
+async function crearActividad(req, res) {  
     const body = req.body;
-    const verificacionNombre = await Actividad.findOne({ where: { nombre: body.nombre } });
-    const verificacionMaestro = await Maestro.findByPk(body.maestro_id);
-
-    if (verificacionNombre) {
-        res.status(404).json({ error: 'Actividad ya registrada' }); //No se si el estatus 404 es correcto para este error
+    try {
+        const actividad = await Actividad.create(body);
+        res.status(201).json(actividad);
         return;
+    } catch (err) {
+        res.status(400).json({ error: err.name });
     }
-    if (!verificacionMaestro) {
-        res.status(404).json({ error: 'Maestro no encontrado, la actividad no puede ser registrada' });
-        return;
-    }
-    const actividad = await Actividad.create(body);
-    res.status(201).json(actividad);
-    return;
 }
 
 async function actualizarActividad(req, res) {
@@ -33,10 +26,14 @@ async function actualizarActividad(req, res) {
         res.status(404).json({ error: 'Actividad no encontrada' });
         return;
     }
-    await Actividad.update(cambioSolicitado, { where: { id } });
-    const actividad_actualizada = await Actividad.findByPk(id);
-    res.status(200).json(actividad_actualizada);
-    return;
+    try {
+        await Actividad.update(cambioSolicitado, { where: { id } });
+        const actividad_actualizada = await Actividad.findByPk(id);
+        res.status(200).json(actividad_actualizada);
+        return;
+    } catch (err) {
+        res.status(400).json({ error: err.name });
+    }
 }
 
 async function eliminarActividad(req, res) {
@@ -57,7 +54,7 @@ async function obtenerActividades(req, res) {
     const nombre = req.query.nombre;
     const maestro_id = req.query.maestro_id;
     const costo = req.query.costo;
-    const actividades = await Actividad.findAll({order: ['id']});
+    const actividades = await Actividad.findAll({ order: ['id'] });
     if (!actividades) {
         res.status(404).json({ error: 'Lista de actividades vacia' });
         return;
@@ -92,10 +89,10 @@ async function obtenerActividad(req, res) {
     return;
 }
 
-async function detalleInscripciones(req,res){
+async function detalleInscripciones(req, res) {
     const idActividad = req.params.id;
     const idInscripcion = req.params.idInscripcion
-    if(idInscripcion === undefined){
+    if (idInscripcion === undefined) {
         const actividad = await Actividad.findByPk(idActividad, {
             include: {
                 model: Inscripcion
@@ -116,11 +113,11 @@ async function detalleInscripciones(req,res){
     return;
 }
 
-async function detalleResenas(req,res){
+async function detalleResenas(req, res) {
     const idActividad = req.params.id;
     const idResena = req.params.idResena
 
-    if(idResena === undefined){
+    if (idResena === undefined) {
         const actividad = await Actividad.findByPk(idActividad, {
             include: {
                 model: Resena
