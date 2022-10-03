@@ -4,107 +4,136 @@ const Inscripcion = require('../models/Inscripcion')
 async function crearInscripcion(req, res) {
     const data = req.body;
 
-    const inscripciones = await Inscripcion.findOne({
-        where: {
-            alumno_id: data.alumno_id,
-            actividad_id: data.actividad_id
-        }
-    });
-
-    if (inscripciones) {
-        res.status(404).json({ error: "Inscripción ya existe", inscripciones });
-        return;
-    };
-
+    //Valida si alumno ya está inscrito en una actividad
     try {
+        const inscripciones = await Inscripcion.findOne({
+            where: {
+                alumno_id: data.alumno_id,
+                actividad_id: data.actividad_id
+            }
+        });
+        if (inscripciones) {
+            res.status(404).json({ error: "Inscripción ya existe", inscripciones });
+            return;
+        };
+
+        //Crea inscripción
         const inscripcion = await Inscripcion.create(data)
-        res.status(201).json({status: 'Inscripcion creada con éxito', inscripcion});
+        res.status(201).json({ status: 'Inscripcion creada con éxito', inscripcion });
         return;
     } catch (err) {
-        res.status(400).json(err);
+        res.status(400).json(err.name);
         return;
     }
 };
 
-async function eliminarInscripcion(req, res) {
-    const inscripcion_id = req.params.id;
-
-    const inscripcion = await Inscripcion.findByPk(inscripcion_id);
-    if (!inscripcion) {
-        res.status(404).json({ error: `Inscripción ${inscripcion_id} no existe` });
-        return;
-    };
-
-    try {
-        const deleted = await Inscripcion.destroy(
-            { where: { id: inscripcion_id } }
-        )
-        if (deleted === 1) {
-            res.status(200).json({status: `id inscripción ${inscripcion_id} borrada con éxito`, inscripcion});
-
-        }
-        else if(deleted === 0) {
-            res.status(200).json({status: `id inscripción ${inscripcion_id} no fue eliminada`, inscripcion});
-        }
-        return;
-    } catch (err) {
-        res.status(400).json(err);
-        return;
-    }
-};
-
+//INSCRIPCIONES - Actuliza datos inscripción
 async function actualizarInscripcion(req, res) {
     const id = req.params.id;
     const inscripcion_actualizar = req.body;
-    const inscripcion = await Inscripcion.findByPk(id);
-    if (!inscripcion) {
-        res.status(404).json({ error: `Inscripción ${id} no existe` });
+
+    try {
+        //Valida si inscripción existe
+        const inscripcion = await Inscripcion.findByPk(id);
+        if (!inscripcion) {
+            res.status(404).json({ error: `Inscripción ${id} no existe` });
+            return;
+        }
+
+        //Actuliza datos inscripción,
+        await Inscripcion.update(inscripcion_actualizar, { where: { id } });
+        const inscripcion_actualizada = await Inscripcion.findByPk(id);
+        res.status(200).json(inscripcion_actualizada);
+        return;
+    } catch (err) {
+        res.status(400).json({ error: err.name });
+    }
+}
+
+//INSCRPCIONES - Elimina inscripción
+async function eliminarInscripcion(req, res) {
+    const inscripcion_id = req.params.id;
+
+    try {
+        //Valida si inscripción existe
+        const inscripcion = await Inscripcion.findByPk(inscripcion_id);
+        if (!inscripcion) {
+            res.status(404).json({ error: `Inscripción ${inscripcion_id} no existe` });
+            return;
+        };
+
+        //Elimina inscripción
+        const deleted = await Inscripcion.destroy(
+            { where: { id: inscripcion_id } }
+        )
+        if (deleted === 1) {       //Si la eliminó
+            res.status(200).json({ status: `id inscripción ${inscripcion_id} borrada con éxito`, inscripcion });
+
+        }
+        else if (deleted === 0) {   //No la elimonó
+            res.status(200).json({ status: `id inscripción ${inscripcion_id} no fue eliminada`, inscripcion });
+        }
+        return;
+    } catch (err) {
+        res.status(400).json({ error: err.name });
         return;
     }
-    await Inscripcion.update(inscripcion_actualizar, { where: { id } });
-    const inscripcion_actualizada = await Inscripcion.findByPk(id);
-    res.status(200).json(inscripcion_actualizada);
-    return;
-}
+};
 
 // INSCRIPCIONES - Consulta general
 async function obtenerInscripciones(req, res) {
-    const inscripciones = await Inscripcion.findAll({order: ['id']});
-
+    //campos de filtrado por alumno o actividad 
+    //Nota: si se capturan los dos campos en el cuerpo de la Api (alumno y actividad) siempre filtrará por alumno
     const alumno_id = req.query.alumno_id;                         //para un alumno en particular
     const actividad_id = req.query.actividad_id;                   //para una actividad en particular
 
-    if (!inscripciones) {
-        res.status(404).json({ error: 'Lista de actividades vacia' });
+    try {
+        //BUsca todas las inscripciones
+        const inscripciones = await Inscripcion.findAll({ order: ['id'] });   //Ordenado por id
+        //Valida si hay inscripciones
+        if (!inscripciones) {
+            res.status(404).json({ error: 'Lista de inscripciones vacia' });
+            return;
+        }
+        //filtra las actividades de un alumno en particular
+        else if (alumno_id) {
+            let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].alumno_id == alumno_id);        //tipo dato diferente, se usa condición con ==
+            inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
+            res.json(inscripciones_filtrados);
+            return;
+        }
+        //filtra los alumnos para una actividad en particlar
+        else if (actividad_id) {
+            let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].actividad_id == actividad_id);  //tipo dato diferente, se usa condición con ==
+            inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
+            res.json(inscripciones_filtrados);
+            return;
+        }
+        res.status(200).json(inscripciones);
+        return;
+    } catch {
+        res.status(400).json({ error: err.name });
         return;
     }
-    //filtra las actividades de un alumno en particular
-    else if (alumno_id) {
-        let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].alumno_id == alumno_id);  ////tipo dato diferente , se usa condición con ==
-        inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
-        res.json(inscripciones_filtrados);
-        return;
-    }
-    //filtra los alumnos para una actividad en particlar
-    else if (actividad_id) {
-        let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].actividad_id == actividad_id );  //tipo dato diferente, se usa condición con ==
-        inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
-        res.json(inscripciones_filtrados);
-        return;
-    }
-    res.status(200).json(inscripciones);
-    return;
 };
 
 async function obtenerInscripcion(req, res) {
     const id = req.params.id;
-    const inscripcion = await Inscripcion.findByPk(id);
-    if (!inscripcion) {
-        res.status(404).json({ error: 'Inscripción no existe' });
+
+    try {
+        //Busca inscripción por id
+        const inscripcion = await Inscripcion.findByPk(id);
+        //Valida si existe inscripción
+        if (!inscripcion) {
+            res.status(404).json({ error: `Inscripción ${id} no existe` });
+            return;
+        }
+        res.status(200).json(inscripcion);
         return;
-    }
-    res.status(200).json(inscripcion);
-    return;
+    } catch {
+        res.status(400).json({ error: err.name });
+        return;
+    } 
 }
 
 module.exports = {
@@ -113,4 +142,4 @@ module.exports = {
     eliminarInscripcion,
     obtenerInscripciones,
     obtenerInscripcion,
- }
+}
