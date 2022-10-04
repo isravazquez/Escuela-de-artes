@@ -14,11 +14,17 @@ const Alumno = sequelize.define('Alumno', {
     },
     nombre: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            is: /^[a-zA-Z]+$/
+        }
     },
     apellido: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            is: /^[a-zA-Z]+$/
+        }
     },
     email: {
         type: DataTypes.TEXT,
@@ -28,9 +34,15 @@ const Alumno = sequelize.define('Alumno', {
             isEmail: true
         }
     },
-    password: {
+/*     password: {
         type: DataTypes.TEXT,
         allowNull: false
+    }, */
+    password_salt: {
+        type: DataTypes.TEXT
+    },
+    password_hash: {
+        type: DataTypes.TEXT
     }
 }, {
     freezeTableName: true,

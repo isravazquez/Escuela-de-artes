@@ -23,9 +23,15 @@ const Administrador = sequelize.define('Administrador', {
         unique: true,
         allowNull: false
     },
-    password: {
+    /*     password: {
         type: DataTypes.TEXT,
         allowNull: false
+    }, */
+    password_salt: {
+        type: DataTypes.TEXT
+    },
+    password_hash: {
+        type: DataTypes.TEXT
     }
 }, {
     freezeTableName: true,

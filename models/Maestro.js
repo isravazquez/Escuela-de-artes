@@ -25,9 +25,15 @@ const Maestro = sequelize.define('Maestro', {
             unique: true
         }
     },
-    password: {
+/*     password: {
         type: DataTypes.TEXT,
         allowNull: false
+    }, */
+    password_salt: {
+        type: DataTypes.TEXT
+    },
+    password_hash: {
+        type: DataTypes.TEXT
     }
 }, {
     freezeTableName: true,
