@@ -22,8 +22,11 @@ const Alumno = sequelize.define('Alumno', {
     },
     email: {
         type: DataTypes.TEXT,
+        allowNull: false,
         unique: true,
-        allowNull: false
+        validate: {
+            isEmail: true
+        }
     },
     password: {
         type: DataTypes.TEXT,
