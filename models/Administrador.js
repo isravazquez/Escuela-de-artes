@@ -11,15 +11,15 @@ const Administrador = sequelize.define('Administrador', {
         autoIncrement: true
     },
     nombre: {
-        type: DataTypes.TEXT,
+        type: DataTypes.CHAR(32),
         allowNull: false
     },
     apellido: {
-        type: DataTypes.TEXT,
+        type: DataTypes.CHAR(64),
         allowNull: false
     },
     email: {
-        type: DataTypes.TEXT,
+        type: DataTypes.CHAR(64),
         unique: true,
         allowNull: false
     },

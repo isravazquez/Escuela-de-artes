@@ -13,15 +13,15 @@ const Alumno = sequelize.define('Alumno', {
         autoIncrement: true
     },
     nombre: {
-        type: DataTypes.TEXT,
+        type: DataTypes.CHAR(32),
         allowNull: false
     },
     apellido: {
-        type: DataTypes.TEXT,
+        type: DataTypes.CHAR(64),
         allowNull: false
     },
     email: {
-        type: DataTypes.TEXT,
+        type: DataTypes.CHAR(64),
         allowNull: false,
         unique: true,
         validate: {
