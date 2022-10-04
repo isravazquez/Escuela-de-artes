@@ -22,7 +22,7 @@ async function crearInscripcion(req, res) {
         res.status(201).json({ status: 'Inscripcion creada con éxito', inscripcion });
         return;
     } catch (err) {
-        res.status(400).json(err.name);
+        res.status(400).json({ error: err, data: data });
         return;
     }
 };
@@ -33,7 +33,7 @@ async function actualizarInscripcion(req, res) {
     const inscripcion_actualizar = req.body;
 
     try {
-        //Valida si inscripción existe
+        //Valida si existe inscripción
         const inscripcion = await Inscripcion.findByPk(id);
         if (!inscripcion) {
             res.status(404).json({ error: `Inscripción ${id} no existe` });
@@ -46,7 +46,7 @@ async function actualizarInscripcion(req, res) {
         res.status(200).json(inscripcion_actualizada);
         return;
     } catch (err) {
-        res.status(400).json({ error: err.name });
+        res.status(400).json({ error: err, id: id, data: inscripcion_actualizar });
     }
 }
 
@@ -75,7 +75,7 @@ async function eliminarInscripcion(req, res) {
         }
         return;
     } catch (err) {
-        res.status(400).json({ error: err.name });
+        res.status(400).json({ error: err, id: inscripcion_id, data: inscripcion });
         return;
     }
 };
@@ -86,6 +86,15 @@ async function obtenerInscripciones(req, res) {
     //Nota: si se capturan los dos campos en el cuerpo de la Api (alumno y actividad) siempre filtrará por alumno
     const alumno_id = req.query.alumno_id;                         //para un alumno en particular
     const actividad_id = req.query.actividad_id;                   //para una actividad en particular
+
+    //Valida se pasen correctamente los nombres de los parametros
+    for (const parametro in req.query) {
+        console.log(parametro)
+        if (parametro !== 'alumno_id' && parametro !== 'actividad_id') {
+            res.status(404).json({ error: `nombre parámetro ${parametro} incorrecto` });
+            return;
+        }
+    }
 
     try {
         //BUsca todas las inscripciones
@@ -111,8 +120,8 @@ async function obtenerInscripciones(req, res) {
         }
         res.status(200).json(inscripciones);
         return;
-    } catch {
-        res.status(400).json({ error: err.name });
+    } catch (err) {
+        res.status(400).json({ error: err, alumno_id, actividad_id: actividad_id });
         return;
     }
 };
@@ -130,10 +139,10 @@ async function obtenerInscripcion(req, res) {
         }
         res.status(200).json(inscripcion);
         return;
-    } catch {
-        res.status(400).json({ error: err.name });
+    } catch (err) {
+        res.status(400).json({ error: err, id: id });
         return;
-    } 
+    }
 }
 
 module.exports = {
