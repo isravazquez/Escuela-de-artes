@@ -1,16 +1,22 @@
 const router = require('express').Router();
 const {
     crearInscripcion,
-    borrarInscripcion,
     actualizarInscripcion,
-    consultarInscripciones,
-    consultarInscripcion
+    eliminarInscripcion,
+    obtenerInscripciones,
+    obtenerInscripcion
 } = require('../controllers/inscripcion')
 
-router.get('/', consultarInscripciones);
-router.get('/:id', consultarInscripcion);
+//Crear inscripción
 router.post('/', crearInscripcion);
-router.delete('/:id', borrarInscripcion);
+//Actualizar inscripción
 router.patch('/:id', actualizarInscripcion);
+//Eliminar inscripción
+router.delete('/:id', eliminarInscripcion);
+
+//Obtener todas las reseñas
+//Filtrado de inscripciones por alumno o actividad
+router.get('/', obtenerInscripciones);
+router.get('/:id', obtenerInscripcion);
 
 module.exports = router;
