@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Aplicación backend para una escuela de artes.",
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "start": "node ./app.js",
     "dev": "nodemon ./app.js",
@@ -25,7 +24,8 @@
     "express": "^4.18.1",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.21.6"
+    "routerjs": "^2.4.5",
+    "sequelize": "^6.23.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
