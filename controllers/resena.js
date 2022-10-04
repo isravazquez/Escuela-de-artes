@@ -17,8 +17,15 @@ async function crearResena(req, res) {
         res.status(201).json({ status: 'reseña creada con éxito', resena });
         return;
     } catch (err) {
-        res.status(400).json({ error: err, data: data });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail, data: data 
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message, data: data 
+            });
+        }
     }
 };
 
@@ -41,8 +48,15 @@ async function actualizarResena(req, res) {
         res.status(200).json(resena_actualizada);
         return;
     } catch (err) {
-        res.status(400).json({ error: err, id: id, data: resena_actualizar });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail, id: id, data: resena_actualizar 
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message, id: id, data: resena_actualizar
+            });
+        }
     }
 }
 
@@ -71,8 +85,15 @@ async function eliminarResena(req, res) {
         }
         return;
     } catch (err) {
-        res.status(400).json({ error: err, id: resena_id, data: resena });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail, id: resena_id, data: resena 
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message, id: resena_id, data: resena 
+            });
+        }
     }
 };
 
@@ -117,8 +138,15 @@ async function obtenerResenas(req, res) {
         res.status(200).json(resenas);
         return;
     } catch (err) {
-        res.status(400).json({ error: err, alumno_id: alumno_id, actividad_id: actividad_id });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail, alumno_id: alumno_id, actividad_id: actividad_id 
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message, alumno_id: alumno_id, actividad_id: actividad_id 
+            });
+        }
     }
 };
 
@@ -136,8 +164,15 @@ async function obtenerResena(req, res) {
         res.status(200).json(resena);
         return;
     } catch (err) {
-        res.status(400).json({ error: err.name, id: id });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail, id: id 
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message, id: id 
+            });
+        }
     }
 }
 

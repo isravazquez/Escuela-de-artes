@@ -22,8 +22,15 @@ async function crearInscripcion(req, res) {
         res.status(201).json({ status: 'Inscripcion creada con éxito', inscripcion });
         return;
     } catch (err) {
-        res.status(400).json({ error: err, data: data });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail, data: data 
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message, data: data 
+            });
+        }
     }
 };
 
@@ -46,7 +53,15 @@ async function actualizarInscripcion(req, res) {
         res.status(200).json(inscripcion_actualizada);
         return;
     } catch (err) {
-        res.status(400).json({ error: err, id: id, data: inscripcion_actualizar });
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail,  id: id, data: inscripcion_actualizar 
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message,  id: id, data: inscripcion_actualizar
+            });
+        }
     }
 }
 
@@ -75,8 +90,15 @@ async function eliminarInscripcion(req, res) {
         }
         return;
     } catch (err) {
-        res.status(400).json({ error: err, id: inscripcion_id, data: inscripcion });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail,  id: inscripcion_id, data: inscripcion 
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message,  id: inscripcion_id, data: inscripcion
+            });
+        }
     }
 };
 
@@ -121,8 +143,15 @@ async function obtenerInscripciones(req, res) {
         res.status(200).json(inscripciones);
         return;
     } catch (err) {
-        res.status(400).json({ error: err, alumno_id, actividad_id: actividad_id });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail, alumno_id: alumno_id, actividad_id: actividad_id 
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message, alumno_id: alumno_id, actividad_id: actividad_id
+            });
+        }
     }
 };
 
@@ -140,8 +169,15 @@ async function obtenerInscripcion(req, res) {
         res.status(200).json(inscripcion);
         return;
     } catch (err) {
-        res.status(400).json({ error: err, id: id });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail, id: id 
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message, id: id
+            });
+        }
     }
 }
 
