@@ -1,7 +1,7 @@
 //CONEXIÓN A LA BASE DE DATOS
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize(
+/* const sequelize = new Sequelize(
     {
         database: 'd6ngrbdemus4t',
         username: 'gvkygiydeafspu',
@@ -14,6 +14,8 @@ const sequelize = new Sequelize(
             "ssl": { "rejectUnauthorized": false }
         }
     }
-);
+); */
+
+const sequelize = new Sequelize('sqlite://db.sqlite');
 
 module.exports = sequelize;

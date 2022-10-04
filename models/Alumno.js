@@ -1,6 +1,8 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/db')
 
+const crypto = require('node:crypto');
+
 const Inscripcion = require('./Inscripcion')
 const Resena = require('./Resena')
 
@@ -72,5 +74,20 @@ Resena.belongsTo(Alumno, {
         name: 'alumno_id'
     }
 })
+
+Alumno.crearPassword  = function(pass) {
+    const salt = crypto.randomBytes(16).toString('hex');
+    const hash = crypto
+        .pbkdf2Sync(pass, salt, 10000, 512, "sha512")
+        .toString("hex");
+    return {salt: salt, hash: hash}
+}
+
+Alumno.validatePassword = function(password, user_salt, user_hash) {
+    const hash = crypto
+        .pbkdf2Sync(password, user_salt, 10000, 512, "sha512")
+        .toString("hex");
+    return user_hash === hash;
+}
 
 module.exports = Alumno;
