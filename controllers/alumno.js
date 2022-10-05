@@ -3,18 +3,10 @@ const Inscripcion = require('../models/Inscripcion');
 const Resena = require('../models/Resena');
 
 async function crearAlumno(req, res) {
-    const body = req.body;
-    console.log(body);
+    const { password:pass, ... alumnoBody} = req.body;
     try {
-        const password = Alumno.crearPassword(body.password)
-        const alumnoARegistrar = { 
-        nombre: body.nombre,
-        apellido: body.apellido,
-        email: body.email,
-        password_salt: password.salt,
-        password_hash: password.hash
-        }
-        console.log(alumnoARegistrar);
+        const password = Alumno.crearPassword(pass)
+        const alumnoARegistrar = { ... alumnoBody, ...password}
         const alumno = await Alumno.create(alumnoARegistrar);
         res.status(201).json(alumno);
         return;

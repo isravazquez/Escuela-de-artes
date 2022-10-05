@@ -20,7 +20,10 @@ const Resena = sequelize.define('Resena', {
     },
     calificacion: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            is: /^[0-5]$/
+        }
     },
     comentario: {
         type: DataTypes.TEXT,

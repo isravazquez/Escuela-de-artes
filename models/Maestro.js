@@ -1,6 +1,11 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db')
 
+const {
+    crearPassword,
+    validarPassword
+} = require('./functions')
+
 // Maestro
 const Maestro = sequelize.define('Maestro', {
     id: {
@@ -10,25 +15,27 @@ const Maestro = sequelize.define('Maestro', {
         autoIncrement: true
     },
     nombre: {
-        type: DataTypes.CHAR(32),
-        allowNull: false
-    },
-    apellido: {
-        type: DataTypes.CHAR(64),
-        allowNull: false
-    },
-    email: {
-        type: DataTypes.CHAR(64),
+        type: DataTypes.STRING(32),
         allowNull: false,
         validate: {
-            isEmail: true,
-            unique: true
+            is: /^[a-zA-Z]+$/
         }
     },
-/*     password: {
-        type: DataTypes.TEXT,
-        allowNull: false
-    }, */
+    apellido: {
+        type: DataTypes.STRING(64),
+        allowNull: false,
+        validate: {
+            is: /^[a-zA-Z]+$/
+        }
+    },
+    email: {
+        type: DataTypes.STRING(64),
+        allowNull: false,
+        unique: true,
+        validate: {
+            isEmail: true,
+        }
+    },
     password_salt: {
         type: DataTypes.TEXT
     },
@@ -39,5 +46,9 @@ const Maestro = sequelize.define('Maestro', {
     freezeTableName: true,
     timestamps: false
 });
+
+Maestro.crearPassword = crearPassword
+
+Maestro.validatePassword = validarPassword
 
 module.exports = Maestro;

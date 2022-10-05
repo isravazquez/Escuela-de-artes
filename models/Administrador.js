@@ -1,6 +1,9 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/db')
 
+const {
+    validarPassword
+} = require('./functions')
 
 //Alumno
 const Administrador = sequelize.define('Administrador', {
@@ -11,22 +14,18 @@ const Administrador = sequelize.define('Administrador', {
         autoIncrement: true
     },
     nombre: {
-        type: DataTypes.CHAR(32),
+        type: DataTypes.STRING(32),
         allowNull: false
     },
     apellido: {
-        type: DataTypes.CHAR(64),
+        type: DataTypes.STRING(64),
         allowNull: false
     },
     email: {
-        type: DataTypes.CHAR(64),
+        type: DataTypes.STRING(64),
         unique: true,
         allowNull: false
     },
-    /*     password: {
-        type: DataTypes.TEXT,
-        allowNull: false
-    }, */
     password_salt: {
         type: DataTypes.TEXT
     },
@@ -38,5 +37,7 @@ const Administrador = sequelize.define('Administrador', {
     timestamps: false
 });
 
+
+Administrador.validatePassword = validarPassword
 
 module.exports = Administrador;

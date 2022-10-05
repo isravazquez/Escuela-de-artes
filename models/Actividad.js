@@ -17,7 +17,7 @@ const Actividad = sequelize.define('Actividad', {
         allowNull: false
     },
     nombre: {
-        type: DataTypes.TEXT,
+        type: DataTypes.TEXT(64),
         allowNull: false
     },
     costo: {
