@@ -41,6 +41,6 @@ const Administrador = sequelize.define('Administrador', {
 
 Administrador.validarPassword = validarPassword
 
-Administrador.validarPassword = generarJWT
+Administrador.generarJWT = generarJWT
 
 module.exports = Administrador;

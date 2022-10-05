@@ -83,6 +83,6 @@ Alumno.crearPassword = crearPassword
 
 Alumno.validarPassword = validarPassword
 
-Alumno.validarPassword = generarJWT
+Alumno.generarJWT = generarJWT
 
 module.exports = Alumno;

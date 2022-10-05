@@ -52,6 +52,6 @@ Maestro.crearPassword = crearPassword
 
 Maestro.validarPassword = validarPassword
 
-Maestro.validarPassword = generarJWT
+Maestro.generarJWT = generarJWT
 
 module.exports = Maestro;
