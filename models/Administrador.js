@@ -38,6 +38,6 @@ const Administrador = sequelize.define('Administrador', {
 });
 
 
-Administrador.validatePassword = validarPassword
+Administrador.validarPassword = validarPassword
 
 module.exports = Administrador;

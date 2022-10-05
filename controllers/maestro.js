@@ -2,9 +2,13 @@ const Maestro = require('../models/Maestro')
 const Actividad = require('../models/Actividad');
 
 async function crearMaestro(req, res) {  
-    const body = req.body;
+    const { password:pass, ... maestroBody} = req.body;
     try {
-        const maestro = await Maestro.create(body);
+        const password = Maestro.crearPassword(pass)
+        const maestroARegistrar = { ... maestroBody, ...password}
+        const maestro = await Maestro.create(maestroARegistrar);
+        delete maestro.dataValues.password_salt
+        delete maestro.dataValues.password_hash
         res.status(201).json(maestro);
         return;
     } catch (err) {

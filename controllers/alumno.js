@@ -8,6 +8,8 @@ async function crearAlumno(req, res) {
         const password = Alumno.crearPassword(pass)
         const alumnoARegistrar = { ... alumnoBody, ...password}
         const alumno = await Alumno.create(alumnoARegistrar);
+        delete alumno.dataValues.password_salt
+        delete alumno.dataValues.password_hash
         res.status(201).json(alumno);
         return;
     } catch (err) {

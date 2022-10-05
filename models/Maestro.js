@@ -49,6 +49,6 @@ const Maestro = sequelize.define('Maestro', {
 
 Maestro.crearPassword = crearPassword
 
-Maestro.validatePassword = validarPassword
+Maestro.validarPassword = validarPassword
 
 module.exports = Maestro;

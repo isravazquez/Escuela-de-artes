@@ -80,6 +80,6 @@ Resena.belongsTo(Alumno, {
 
 Alumno.crearPassword = crearPassword
 
-Alumno.validatePassword = validarPassword
+Alumno.validarPassword = validarPassword
 
 module.exports = Alumno;
