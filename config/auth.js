@@ -8,4 +8,12 @@ function getTokenFromHeader(req){
 }
 
 const auth = {
+    required: expressjwt({
+        secret: secret,
+        algorithms: ['HS256'],
+        userProperty: 'user',
+        getToken: getTokenFromHeader
+    })
 }
+
+module.exports = auth;

@@ -17,13 +17,17 @@ const validarPassword = function (password, user_salt, user_hash) {
     return user_hash === hash;
 }
 
-const generarJWT = function(user) {
+const generarJWT = function(user, type) {
     const today = new Date();
     const exp = new Date(today);
     exp.setDate(today.getDate() + 60);
 
     return jwt.sign({
-        user: user.email,
+        type: type,
+        id: user.id,
+        name: user.nombre,
+        surname: user.apellido,
+        email: user.email,
         exp: parseInt(exp.getTime() / 1000)
     }, secret)
 }
