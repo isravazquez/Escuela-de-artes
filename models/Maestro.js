@@ -20,9 +20,9 @@ const Maestro = sequelize.define('Maestro', {
     email: {
         type: DataTypes.TEXT,
         allowNull: false,
+        unique: true,
         validate: {
             isEmail: true,
-            unique: true
         }
     },
     password: {
