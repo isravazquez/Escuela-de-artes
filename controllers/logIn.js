@@ -34,7 +34,13 @@ async function logIn(req, res) {
             if (!Maestro.validarPassword(body.password, maestro.password_salt, maestro.password_hash)) {
                 return res.status(404).json({ error: "email o contraseña incorrectas" })
             }
-            return res.status(200).json(maestro)
+            return res.status(200).json(//maestro
+            {
+                user: maestro.id,
+                email: maestro.email,
+                token: Maestro.generarJWT(maestro, body.type)
+            }
+            )
         }
 
         if (body.type === 3) {
@@ -46,7 +52,13 @@ async function logIn(req, res) {
             if (!Administrador.validarPassword(body.password, administrador.password_salt, administrador.password_hash)) {
                 return res.status(404).json({ error: "email o contraseña incorrectas" })
             }
-            return res.status(200).json(administrador)
+            return res.status(200).json(//administrador
+            {
+                user: administrador.id,
+                email: administrador.email,
+                token: Administrador.generarJWT(administrador, body.type)
+            }
+            )
         }
     } catch (error) {
 
