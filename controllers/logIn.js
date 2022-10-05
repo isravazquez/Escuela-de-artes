@@ -20,7 +20,7 @@ async function logIn(req, res) {
                 {
                     user: alumno.id,
                     email: alumno.email,
-                    token: Alumno.generarJWT(alumno)
+                    token: Alumno.generarJWT(alumno, body.type)
                 }
                 )
         }
