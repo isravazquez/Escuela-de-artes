@@ -1,15 +1,16 @@
 ## APIS - SISTEMA ESCOLAR
 RESTful - JSON
 
-####RESEÑAS
+#### RESEÑAS
+
 APIS para la gestión de las reseñas para que el alumno pueda dar comentarios específicos y dar una calificación al comentario de acuerdo a qué tan satisfecho o no está en la actividad.
 
 Se podrán dar de alta tantas reseñas como desee, así como consultar, actualizar o eliminar reseñas existentes.
 
-#####Crear  Reseña
+##### Crear  Reseña
 Da de alta una reseña para un alumno-actividad otorgando una calificación y un comentario.
 
-1. **Método: **
+1. **Método:**
 POST
 
 2. **URL del WebService**
@@ -49,12 +50,13 @@ también regresará información con los datos dados de alta en JSON el status y
 	}
 }
 
-#####Actualizar Reseña
+##### Actualizar Reseña
+
 Actualiza una reseña de acuerdo al id de la reseña existente modificando los datos del cuerpo de la reseña a otro valor.
 Únicamente cambiará los datos que se coloquen en el cuerpo de la reseña (Body).
 
 Al colocar un dato, este deberá ser obligatorio excepto en calificación que puede ser 0 y comentarios que puede estar vacío.
-1. **Método: **
+1. **Método:**
 PATCH
 
 2. **URL del WebService**
@@ -62,7 +64,7 @@ PATCH
 
 3. **Parámetros**
 **id.**- id de la reseña
-> *ejemplo:*
+> * ejemplo: *
 http://localhost:3000/v1/resenas/20
 
 
@@ -74,7 +76,7 @@ http://localhost:3000/v1/resenas/20
 |actividad_id| id de la actividad|Si, solo si se coloca|
 |calificación|calificacion reseña|Si, solo si se coloca|
 |comentario|comentario reseña| Si, solo si se coloca|
-** *Ejemplo Body* **
+** * Ejemplo Body * **
 {
 	"alumno_id": 13,
 	"actividad_id": 7,
