@@ -3,7 +3,8 @@ const sequelize = require('../config/db')
 
 const {
     crearPassword,
-    validarPassword
+    validarPassword,
+    generarJWT
 } = require('./functions')
 
 // Maestro
@@ -50,5 +51,7 @@ const Maestro = sequelize.define('Maestro', {
 Maestro.crearPassword = crearPassword
 
 Maestro.validarPassword = validarPassword
+
+Maestro.validarPassword = generarJWT
 
 module.exports = Maestro;

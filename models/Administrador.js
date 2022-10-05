@@ -2,7 +2,8 @@ const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/db')
 
 const {
-    validarPassword
+    validarPassword,
+    generarJWT
 } = require('./functions')
 
 //Alumno
@@ -39,5 +40,7 @@ const Administrador = sequelize.define('Administrador', {
 
 
 Administrador.validarPassword = validarPassword
+
+Administrador.validarPassword = generarJWT
 
 module.exports = Administrador;

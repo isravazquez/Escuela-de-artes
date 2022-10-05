@@ -8,7 +8,8 @@ const Resena = require('./Resena')
 
 const {
     crearPassword,
-    validarPassword
+    validarPassword,
+    generarJWT
 } = require('./functions')
 
 //Alumno
@@ -81,5 +82,7 @@ Resena.belongsTo(Alumno, {
 Alumno.crearPassword = crearPassword
 
 Alumno.validarPassword = validarPassword
+
+Alumno.validarPassword = generarJWT
 
 module.exports = Alumno;
