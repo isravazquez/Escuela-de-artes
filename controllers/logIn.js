@@ -16,7 +16,13 @@ async function logIn(req, res) {
             if (!Alumno.validarPassword(body.password, alumno.password_salt, alumno.password_hash)) {
                 return res.status(404).json({ error: "email o contraseña incorrectas" })
             }
-            return res.status(200).json(alumno)
+            return res.status(200).json(//alumno
+                {
+                    user: alumno.id,
+                    email: alumno.email,
+                    token: Alumno.generateJWT(alumno)
+                }
+                )
         }
 
         if (body.type === 2) {
