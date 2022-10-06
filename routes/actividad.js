@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const auth = require('../config/auth');
+const auth = require('../middlewares/auth');
 const accesoPermitido = require('../middlewares/accesoPermitido');
 const {
     crearActividad,

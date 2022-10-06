@@ -1,8 +1,3 @@
-/* function accesoPermitido(req, res, next) {
-    const userType = req.auth.type;
-    if(userType !== 3) return res.status(401).json({error: "Acceso no autorizado"})
-    next();
-} */
 
 const accesoPermitido = {
     soloAdmin: function(req, res, next) {

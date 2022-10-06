@@ -6,12 +6,19 @@ const sequelize = require('./config/db')
 //Routes require
 const routes = require('./routes')
 
+//Middlewares
+const auth = require('./middlewares/auth');
+
+
 //App puesta en marcha
 const app = express();
 
 //Configuración para los métodos POST
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+//Auth Opcional Middleware
+app.use(auth.optional);
 
 //Configuración de rutas
 app.use('/v1', routes)
