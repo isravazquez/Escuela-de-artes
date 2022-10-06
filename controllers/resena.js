@@ -1,6 +1,6 @@
 const Resena = require('../models/Resena')
 
-// RESEÑAS - Crear reseña 
+// RESEÑAS - Crear reseña
 async function crearResena(req, res) {
     const data = req.body;
 
