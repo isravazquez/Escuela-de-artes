@@ -4,6 +4,7 @@ const Actividad = require('../models/Actividad')
 const Inscripcion = require('../models/Inscripcion');
 const Resena = require('../models/Resena');
 
+
 //Creación de una Actividad
 //Petición requiere un body pero no parámetros 
 async function crearActividad(req, res) {
@@ -51,6 +52,7 @@ async function actualizarActividad(req, res) {
             });
         }
     }
+
 }
 
 //Eliminar una Actividad
