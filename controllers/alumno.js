@@ -9,8 +9,15 @@ async function crearAlumno(req, res) {
         res.status(201).json(alumno);
         return;
     } catch (err) {
-        res.status(400).json({ error: err.name });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message
+            });
+        }
     }
 }
 
@@ -32,8 +39,15 @@ async function actualizarAlumno(req, res) {
         res.status(200).json(alumno_actualizado);
         return;
     } catch (err) {
-        res.status(400).json({ error: err.name });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message
+            });
+        }
     }
 }
 
@@ -51,8 +65,15 @@ async function eliminarAlumno(req, res) {
         res.status(200).json(deleted);
         return;
     } catch (err) {
-        res.status(400).json({ error: err.name });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message
+            });
+        }
     }
 }
 
@@ -61,12 +82,12 @@ async function obtenerAlumnos(req, res) {
     const apellido = req.query.apellido;
     const email = req.query.email;
     const params = ['nombre', 'apellido', 'email'];
-    for (const parametro in req.query) {  
+    for (const parametro in req.query) {
         if (!params.includes(parametro)) {
             res.status(404).json({ error: `nombre parámetro ${parametro} incorrecto` });
             return;
-        }  
-    } 
+        }
+    }
     try {
         const alumnos = await Alumno.findAll({ order: ['id'] });
         if (!alumnos) {
@@ -94,69 +115,112 @@ async function obtenerAlumnos(req, res) {
         res.status(200).json(alumnos);
         return;
     } catch (error) {
-        res.status(400).json({ error: err.name });
-        return;
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message
+            });
+        }
     }
 }
 
 async function obtenerAlumno(req, res) {
     const id = req.params.id;
-    const alumno = await Alumno.findByPk(id);
-    if (!alumno) {
-        res.status(404).json({ error: 'Alumno no encontrado' });
+    try {
+        const alumno = await Alumno.findByPk(id);
+        if (!alumno) {
+            res.status(404).json({ error: 'Alumno no encontrado' });
+            return;
+        }
+        res.status(200).json(alumno);
         return;
+    } catch (err) {
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message
+            });
+        }
     }
-    res.status(200).json(alumno);
-    return;
 }
 
 async function detalleInscripciones(req, res) {
     const idAlumno = req.params.id;
     const idInscripcion = req.params.idInscripcion
-    if (idInscripcion === undefined) {
+    try {
+        if (idInscripcion === undefined) {
+            const alumno = await Alumno.findByPk(idAlumno, {
+                include: {
+                    model: Inscripcion
+                }
+            });
+            res.status(200).json(alumno);
+            return;
+        }
         const alumno = await Alumno.findByPk(idAlumno, {
             include: {
-                model: Inscripcion
+                model: Inscripcion,
+                where: {
+                    id: idInscripcion
+                }
             }
         });
         res.status(200).json(alumno);
         return;
-    }
-    const alumno = await Alumno.findByPk(idAlumno, {
-        include: {
-            model: Inscripcion,
-            where: {
-                id: idInscripcion
-            }
+    } catch (err) {
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message
+            });
         }
-    });
-    res.status(200).json(alumno);
-    return;
+    }
+
 }
 
 async function detalleResenas(req, res) {
     const idAlumno = req.params.id;
     const idResena = req.params.idResena
-
-    if (idResena === undefined) {
+    try {
+        if (idResena === undefined) {
+            const alumno = await Alumno.findByPk(idAlumno, {
+                include: {
+                    model: Resena
+                }
+            });
+            res.status(200).json(alumno);
+            return;
+        }
         const alumno = await Alumno.findByPk(idAlumno, {
             include: {
-                model: Resena
+                model: Resena,
+                where: {
+                    id: idResena
+                }
             }
         });
         res.status(200).json(alumno);
         return;
-    }
-    const alumno = await Alumno.findByPk(idAlumno, {
-        include: {
-            model: Resena,
-            where: {
-                id: idResena
-            }
+    } catch (err) {
+        if (err.parent != null) {
+            return res.status(400).json({
+                error: err.parent.detail
+            });
+        } else {
+            return res.status(400).json({
+                error: err.errors[0].message
+            });
         }
-    });
-    res.status(200).json(alumno);
-    return;
+    }
 }
 
 module.exports = {
