@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const auth = require('../config/auth');
+const accesoPermitido = require('../middlewares/accesoPermitido');
 const {
     crearAlumno,
     actualizarAlumno,
@@ -11,23 +13,23 @@ const {
 
 
 //Crear nuevo Alumno
-router.post('/', crearAlumno);
+router.post('/',auth.required, accesoPermitido.soloAdmin, crearAlumno);
 //Modificar Alumno existente
-router.patch('/:id', actualizarAlumno);
+router.patch('/:id',auth.required, accesoPermitido.soloAdmin, actualizarAlumno);
 //Eliminar Alumno
-router.delete('/:id', eliminarAlumno);
+router.delete('/:id',auth.required, accesoPermitido.soloAdmin, eliminarAlumno);
 
 //Obtener todos los alumnos
-router.get('/', obtenerAlumnos);
+router.get('/',auth.required, accesoPermitido.adminYMaestro, obtenerAlumnos);
 //Obtener alumno por id
-router.get('/:id', obtenerAlumno);
+router.get('/:id',accesoPermitido.adminMaestroYAlumnoId, obtenerAlumno);
 
 //Detalle de inscripciones de cada alumno
 //Si se agrega el id de la inscripción se mostrara exclusivamente
-router.get('/:id/inscripciones/:idInscripcion?', detalleInscripciones);
+router.get('/:id/inscripciones/:idInscripcion?',auth.required,accesoPermitido.adminMaestroYAlumnoId, detalleInscripciones);
 
 //Detalle de reseñas de cada alumno
 //Si se agrega el id de la reseña se mostrara exclusivamente
-router.get('/:id/resenas/:idResena?', detalleResenas);
+router.get('/:id/resenas/:idResena?',auth.required,accesoPermitido.adminMaestroYAlumnoId, detalleResenas);
 
 module.exports = router;

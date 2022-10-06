@@ -14,6 +14,7 @@ const auth = {
         userProperty: 'user',
         getToken: getTokenFromHeader
     })
+
 }
 
 module.exports = auth;
