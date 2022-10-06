@@ -1,86 +1,99 @@
+//Require de Modelo principal
 const Maestro = require('../models/Maestro')
+//Require de modelos auxiliares
 const Actividad = require('../models/Actividad');
 
+//Creación de un Maestro
+//Petición requiere un body pero no parámetros 
 async function crearMaestro(req, res) {
     const body = req.body;
     try {
         const maestro = await Maestro.create(body);
         res.status(201).json(maestro);
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
-                error: err.parent.detail
+                error: err.parent.detail, data: body
             });
         } else {
             return res.status(400).json({
-                error: err.errors[0].message
+                error: err.errors[0].message, data: body
             });
         }
     }
 }
 
+//Actualizar datos de un Maestro
+//Petición requiere un body y un id en parámetros
 async function actualizarMaestro(req, res) {
     const id = req.params.id;
     const cambioSolicitado = req.body;
     try {
         const maestro = await Maestro.findByPk(id);
         if (!maestro) {
-            res.status(404).json({ error: 'Maestro no encontrado' });
+            res.status(404).json({ error: `Maestro ${id} no existe` });
             return;
         }
-        const estado = await Maestro.update(cambioSolicitado, { where: { id } });
-        if (estado[0] === 0) {
-            res.status(400).json({ error: 'Maestro no actualizado' })
-            return;
-        }
+        await Maestro.update(cambioSolicitado, { where: { id } });
         const maestro_actualizado = await Maestro.findByPk(id);
         res.status(200).json(maestro_actualizado);
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
-                error: err.parent.detail
+                error: err.parent.detail, data: cambioSolicitado
             });
         } else {
             return res.status(400).json({
-                error: err.errors[0].message
+                error: err.errors[0].message, data: cambioSolicitado
             });
         }
     }
 }
 
+//Eliminar un Maestro
+//Petición no requiere un body pero sí un id en parámetros
 async function eliminarMaestro(req, res) {
     const id = req.params.id;
     try {
         const maestro = await Maestro.findByPk(id);
         if (!maestro) {
-            res.status(404).json({ error: 'Maestro no encontrado' });
+            res.status(404).json({ error: `Maestro ${id} no existe` });
             return;
         }
-        const deleted = Maestro.destroy(
+        await Maestro.destroy(
             { where: { id } }
         );
-        res.status(200).json(deleted);
+        res.status(200).json({ status: `id maestro ${id} borrada con éxito`, maestro });
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
-                error: err.parent.detail
+                error: err.parent.detail, id: id, data: maestro
             });
         } else {
             return res.status(400).json({
-                error: err.errors[0].message
+                error: err.errors[0].message, id: id, data: maestro
             });
         }
     }
 }
 
+//Obtener todos los Maestros
+//Petición no requiere un body ni parámetros, pero acepta queries para un filtrado
 async function obtenerMaestros(req, res) {
     const nombre = req.query.nombre;
     const apellido = req.query.apellido;
     const email = req.query.email;
-    try {
+    const params = ['nombre', 'apellido', 'email'];
+    for (const parametro in req.query) {
+        if (!params.includes(parametro)) {
+            res.status(404).json({ error: `nombre parámetro ${parametro} incorrecto` });
+            return;
+        }
+    }
+    try { //Queries posibles
         const maestros = await Maestro.findAll({ order: ['id'] });
         if (!maestros) {
             res.status(404).json({ error: 'Lista de maestros vacia' });
@@ -106,7 +119,7 @@ async function obtenerMaestros(req, res) {
         }
         res.status(200).json(maestros);
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
                 error: err.parent.detail
@@ -119,29 +132,33 @@ async function obtenerMaestros(req, res) {
     }
 }
 
+//Obtener un Maestro
+//Petición no requiere un body pero sí un id en parámetros
 async function obtenerMaestro(req, res) {
     const id = req.params.id;
     try {
         const maestro = await Maestro.findByPk(id);
         if (!maestro) {
-            res.status(404).json({ error: 'Maestro no encontrado' });
+            res.status(404).json({ error: `Maestro ${id} no existe` });
             return;
         }
         res.status(200).json(maestro);
         return;
     } catch (err) {
-        if (err.parent != null) {
+        if (err.parent != null) { //Existen dos tipos de errores posibles en la petición
             return res.status(400).json({
-                error: err.parent.detail
+                error: err.parent.detail, id: id
             });
         } else {
             return res.status(400).json({
-                error: err.errors[0].message
+                error: err.errors[0].message, id: id
             });
         }
-    } 
+    }
 }
 
+//Obtener una actividad del Maestro
+//Petición no requiere un body pero sí un id del Maestro y de la Actividad
 async function detalleActividades(req, res) {
     const idMaestro = req.params.id;
     const idActividad = req.params.idActividad
@@ -165,7 +182,7 @@ async function detalleActividades(req, res) {
         });
         res.status(200).json(maestro);
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
                 error: err.parent.detail
@@ -177,7 +194,6 @@ async function detalleActividades(req, res) {
         }
     }
 }
-
 
 module.exports = {
     crearMaestro,
