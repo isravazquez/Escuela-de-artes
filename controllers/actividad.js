@@ -1,62 +1,62 @@
 //Require de Modelo principal
 const Actividad = require('../models/Actividad')
-
 //Require de modelos auxiliares
-const Maestro = require('../models/Maestro')
 const Inscripcion = require('../models/Inscripcion');
 const Resena = require('../models/Resena');
 
 
+//Creación de una Actividad
+//Petición requiere un body pero no parámetros 
 async function crearActividad(req, res) {
     const body = req.body;
     try {
         const actividad = await Actividad.create(body);
         res.status(201).json(actividad);
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
-                error: err.parent.detail
+                error: err.parent.detail, data: body
             });
         } else {
             return res.status(400).json({
-                error: err.errors[0].message
+                error: err.errors[0].message, data: body
             });
         }
     }
 }
 
+//Actualizar datos de una Actividad
+//Petición requiere un body y un id en parámetros
 async function actualizarActividad(req, res) {
     const id = req.params.id;
     const cambioSolicitado = req.body;
     try {
         const actividad = await Actividad.findByPk(id);
         if (!actividad) {
-            res.status(404).json({ error: 'Actividad no encontrada' });
+            res.status(404).json({ error: `Actividad ${id} no existe` });
             return;
         }
-        const estado = await Actividad.update(cambioSolicitado, { where: { id } });
-        if (estado[0] === 0) {
-            res.status(400).json({ error: 'Actividad no actualizada' })
-            return;
-        }
+        await Actividad.update(cambioSolicitado, { where: { id } });
         const actividad_actualizada = await Actividad.findByPk(id);
         res.status(200).json(actividad_actualizada);
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
-                error: err.parent.detail
+                error: err.parent.detail, data: cambioSolicitado
             });
         } else {
             return res.status(400).json({
-                error: err.errors[0].message
+                error: err.errors[0].message, data: cambioSolicitado
             });
         }
     }
 
 }
 
+//Eliminar una Actividad
+//Petición no requiere un body pero sí un id en parámetros
 async function eliminarActividad(req, res) {
     const id = req.params.id;
     try {
@@ -65,25 +65,27 @@ async function eliminarActividad(req, res) {
             res.status(404).json({ error: 'Actividad no encontrada' });
             return;
         }
-        const deleted = Actividad.destroy(
+        await Actividad.destroy(
             { where: { id } }
         );
-        res.status(200).json(deleted);
+        res.status(200).json({ status: `id actividad ${id} borrada con éxito`, actividad });
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
-                error: err.parent.detail
+                error: err.parent.detail, id: id, data: actividad
             });
         } else {
             return res.status(400).json({
-                error: err.errors[0].message
+                error: err.errors[0].message, id: id, data: actividad
             });
         }
     }
 
 }
 
+//Obtener todas las Actividades
+//Petición no requiere un body ni parámetros, pero acepta queries para un filtrado
 async function obtenerActividades(req, res) {
     const nombre = req.query.nombre;
     const maestro_id = req.query.maestro_id;
@@ -95,7 +97,7 @@ async function obtenerActividades(req, res) {
             return;
         }
     }
-    try {
+    try { //Queries posibles
         const actividades = await Actividad.findAll({ order: ['id'] });
         if (!actividades) {
             res.status(404).json({ error: 'Lista de actividades vacia' });
@@ -121,7 +123,7 @@ async function obtenerActividades(req, res) {
         }
         res.status(200).json(actividades);
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
                 error: err.parent.detail
@@ -134,31 +136,34 @@ async function obtenerActividades(req, res) {
     }
 }
 
+//Obtener una Actividad
+//Petición no requiere un body pero sí un id en parámetros
 async function obtenerActividad(req, res) {
     const id = req.params.id;
     try {
         const actividad = await Actividad.findByPk(id);
         if (!actividad) {
-            res.status(404).json({ error: 'Actividad no encontrada' });
+            res.status(404).json({ error: `Actividad ${id} no existe` });
             return;
         }
         res.status(200).json(actividad);
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
-                error: err.parent.detail
+                error: err.parent.detail, id: id
             });
         } else {
             return res.status(400).json({
-                error: err.errors[0].message
+                error: err.errors[0].message, id: id
             });
         }
     }
 
 }
 
-//Pendiente de trycatch
+//Obtener una inscripción de la Actividad
+//Petición no requiere un body pero sí un id de la Actividad y de la Inscripción
 async function detalleInscripciones(req, res) {
     const idActividad = req.params.id;
     const idInscripcion = req.params.idInscripcion
@@ -182,7 +187,7 @@ async function detalleInscripciones(req, res) {
         });
         res.status(200).json(actividad);
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
                 error: err.parent.detail
@@ -195,6 +200,8 @@ async function detalleInscripciones(req, res) {
     }
 }
 
+//Obtener una reseña de la Actividad
+//Petición no requiere un body pero sí un id de la Actividad y de la Reseña
 async function detalleResenas(req, res) {
     const idActividad = req.params.id;
     const idResena = req.params.idResena
@@ -218,7 +225,7 @@ async function detalleResenas(req, res) {
         });
         res.status(200).json(actividad);
         return;
-    } catch (err) {
+    } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
                 error: err.parent.detail
