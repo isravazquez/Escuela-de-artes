@@ -39,10 +39,13 @@ const Maestro = sequelize.define('Maestro', {
         }
     },
     password_salt: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
+        allowNull: false
     },
     password_hash: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
+        allowNull: false
+
     }
 }, {
     freezeTableName: true,
