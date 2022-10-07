@@ -22,6 +22,7 @@ app.use(auth.optional);
 
 //Configuración de rutas
 app.use('/v1', routes)
+app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 
 
 

@@ -26,7 +26,7 @@ router.use('/resenas', resenas);
 router.use('/logIn', logIn);
 
 
-router.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
+
 
 
 //Catch 404 
