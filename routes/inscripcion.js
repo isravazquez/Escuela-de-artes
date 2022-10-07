@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const auth = require('../middlewares/auth');
-const accesoPermitido = require('../middlewares/accesoPermitido');
+const auth = require('../config/auth');
+
 const {
     crearInscripcion,
     actualizarInscripcion,
@@ -10,15 +10,15 @@ const {
 } = require('../controllers/inscripcion')
 
 //Crear inscripción
-router.post('/',auth.required, accesoPermitido.soloAdmin, crearInscripcion);
+router.post('/',auth.required, auth.admin, crearInscripcion);
 //Actualizar inscripción
-router.patch('/:id',auth.required, accesoPermitido.soloAdmin, actualizarInscripcion);
+router.patch('/:id',auth.required, auth.admin, actualizarInscripcion);
 //Eliminar inscripción
-router.delete('/:id',auth.required, accesoPermitido.soloAdmin, eliminarInscripcion);
+router.delete('/:id',auth.required, auth.admin, eliminarInscripcion);
 
-//Obtener todas las reseñas
+//Obtener todas las inscripciones
 //Filtrado de inscripciones por alumno o actividad
-router.get('/',auth.required, accesoPermitido.soloAdmin, obtenerInscripciones);
-router.get('/:id',auth.required, accesoPermitido.soloAdmin, obtenerInscripcion);
+router.get('/',auth.required, auth.admin, obtenerInscripciones);
+router.get('/:id',auth.required, auth.admin, obtenerInscripcion);
 
 module.exports = router;

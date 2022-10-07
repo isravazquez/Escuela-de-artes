@@ -7,7 +7,7 @@ const sequelize = require('./config/db')
 const routes = require('./routes')
 
 //Middlewares
-const auth = require('./middlewares/auth');
+const auth = require('./config/auth');
 
 
 //App puesta en marcha

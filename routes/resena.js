@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const auth = require('../middlewares/auth');
-const accesoPermitido = require('../middlewares/accesoPermitido');
+const auth = require('../config/auth');
+
 const {
     crearResena,
     actualizarResena,
@@ -10,11 +10,11 @@ const {
 } = require('../controllers/resena')
 
 //Crear reseña
-router.post('/',auth.required, accesoPermitido.adminYAlumno, crearResena);
+router.post('/',auth.required, auth.admin, auth.alumno, crearResena);
 //Actualizar reseña
-router.patch('/:id',auth.required, accesoPermitido.adminYAlumno, actualizarResena)
+router.patch('/:id',auth.required, auth.admin, auth.alumno, actualizarResena)
 //Eliminar reseña
-router.delete('/:id',auth.required, accesoPermitido.adminYAlumno, eliminarResena);
+router.delete('/:id',auth.required, auth.admin, auth.alumno, eliminarResena);
 
 //Obtener todas las reseñas
 //filtrado de reseñas por alumno o actividad por el body

@@ -18,7 +18,8 @@ const Alumno = sequelize.define('Alumno', {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        unique: true
     },
     nombre: {
         type: DataTypes.STRING(32),

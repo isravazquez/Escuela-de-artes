@@ -10,7 +10,8 @@ const Actividad = sequelize.define('Actividad', {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        unique: true
     },
     maestro_id: {
         type: DataTypes.INTEGER,
