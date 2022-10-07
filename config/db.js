@@ -14,6 +14,8 @@ const sequelize = new Sequelize(
             "ssl": { "rejectUnauthorized": false }
         }
     }
-);
+); 
+
+//const sequelize = new Sequelize('sqlite://db.sqlite');
 
 module.exports = sequelize;

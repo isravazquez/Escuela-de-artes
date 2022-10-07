@@ -4,6 +4,7 @@ const maestros = require('./maestro');
 const actividades = require('./actividad');
 const inscripciones = require('./inscripcion');
 const resenas = require('./resena');
+const logIn = require('./logIn');
 
 //Configuracion Swagger
 const swaggerSpec =  require('../config/swagger_config');
@@ -21,7 +22,12 @@ router.use('/actividades', actividades);
 router.use('/maestros', maestros);
 router.use('/inscripciones', inscripciones);
 router.use('/resenas', resenas);
+
+router.use('/logIn', logIn);
+
+
 router.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
+
 
 //Catch 404 
 router.use(function (req, res, next) {

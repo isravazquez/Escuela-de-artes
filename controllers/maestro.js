@@ -3,22 +3,29 @@ const Maestro = require('../models/Maestro')
 //Require de modelos auxiliares
 const Actividad = require('../models/Actividad');
 
+
+
 //Creación de un Maestro
 //Petición requiere un body pero no parámetros 
-async function crearMaestro(req, res) {
-    const body = req.body;
+async function crearMaestro(req, res) {  
+    const { password:pass, ... maestroBody} = req.body;
+
     try {
-        const maestro = await Maestro.create(body);
+        const password = Maestro.crearPassword(pass)
+        const maestroARegistrar = { ... maestroBody, ...password}
+        const maestro = await Maestro.create(maestroARegistrar);
+        delete maestro.dataValues.password_salt
+        delete maestro.dataValues.password_hash
         res.status(201).json(maestro);
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
-                error: err.parent.detail, data: body
+                error: err.parent.detail, data: maestroBody
             });
         } else {
             return res.status(400).json({
-                error: err.errors[0].message, data: body
+                error: err.errors[0].message, data: maestroBody
             });
         }
     }

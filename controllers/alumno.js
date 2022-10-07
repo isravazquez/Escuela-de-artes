@@ -7,9 +7,13 @@ const Resena = require('../models/Resena');
 //Creación de un Alumno
 //Petición requiere un body pero no parámetros 
 async function crearAlumno(req, res) {
-    const body = req.body;
+    const { password:pass, ... alumnoBody} = req.body;
     try {
-        const alumno = await Alumno.create(body);
+        const password = Alumno.crearPassword(pass)
+        const alumnoARegistrar = { ... alumnoBody, ...password}
+        const alumno = await Alumno.create(alumnoARegistrar);
+        delete alumno.dataValues.password_salt
+        delete alumno.dataValues.password_hash
         res.status(201).json(alumno);
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición

@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const auth = require('../config/auth');
+
 const {
     crearResena,
     actualizarResena,
@@ -8,16 +10,16 @@ const {
 } = require('../controllers/resena')
 
 //Crear reseña
-router.post('/', crearResena);
+router.post('/',auth.required, auth.admin, auth.alumno, crearResena);
 //Actualizar reseña
-router.patch('/:id', actualizarResena)
+router.patch('/:id',auth.required, auth.admin, auth.alumno, actualizarResena)
 //Eliminar reseña
-router.delete('/:id', eliminarResena);
+router.delete('/:id',auth.required, auth.admin, auth.alumno, eliminarResena);
 
 //Obtener todas las reseñas
 //filtrado de reseñas por alumno o actividad por el body
-router.get('/', obtenerResenas);
+router.get('/',auth.required, obtenerResenas);
 //Obtener reseña por id
-router.get('/:id', obtenerResena);
+router.get('/:id',auth.required, obtenerResena);
 
 module.exports = router;
