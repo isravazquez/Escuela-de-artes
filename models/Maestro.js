@@ -20,12 +20,16 @@ const Maestro = sequelize.define('Maestro', {
     email: {
         type: DataTypes.TEXT,
         allowNull: false,
+        unique: true,
         validate: {
             isEmail: true,
-            unique: true
         }
     },
-    password: {
+    password_salt: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    password_hash: {
         type: DataTypes.TEXT,
         allowNull: false
     }
