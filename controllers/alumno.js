@@ -19,13 +19,15 @@ async function crearAlumno(req, res) {
     } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
-                error: err.parent.detail, data: body
+                error: err.parent.detail, data: alumnoBody
             });
-        } else {
+        } 
+        if(err.errors != null) {
             return res.status(400).json({
-                error: err.errors[0].message, data: body
+                error: err.errors[0].message, data: alumnoBody
             });
         }
+        return err;
     }
 }
 

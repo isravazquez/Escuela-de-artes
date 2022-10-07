@@ -19,47 +19,47 @@ const auth = {
     }),
     required: function (req, res, next) {
         //Autenticación al token a través de que exista un usuario
-        if (!req.auth || !req.auth.user) return res.sendStatus(401)
+        if (!req.auth || !req.auth.email) return res.sendStatus(401)
         //Autenticación a través de la fecha de expiración del token 
         const today = new Date()
         if (req.auth.exp < (parseInt(today.getTime() / 1000))) return res.sendStatus(401)
-        next()
+        return next()
     },
     admin: function (req, res, next){
-        if(req.locals.auth === true) return next()
+        if(res.locals.auth === true) return next()
         const userType = req.auth.type;
         if(userType !== 3) return res.status(401).json({error: "Acceso no autorizado"})
-        req.locals.auth = true
+        res.locals.auth = true
         return next()
     },
     maestro: function (req, res, next){
-        if(req.locals.auth === true) return next()
+        if(res.locals.auth === true) return next()
         const userType = req.auth.type;
         if(userType !== 2) return res.status(401).json({error: "Acceso no autorizado"})
-        req.locals.auth = true
+        res.locals.auth = true
         return next()
     },
     maestroId: function (req, res, next){
-        if(req.locals.auth === true) return next()
+        if(res.locals.auth === true) return next()
         const userType = req.auth.type;
         const id = req.auth.id;
         if(userType !== 2 || id !== req.params.id ) return res.status(401).json({error: "Acceso no autorizado"})
-        req.locals.auth = true
+        res.locals.auth = true
         return next()
     },
     alumno: function (req, res, next){
-        if(req.locals.auth === true) return next()
+        if(res.locals.auth === true) return next()
         const userType = req.auth.type;
         if(userType !== 1) return res.status(401).json({error: "Acceso no autorizado"})
-        req.locals.auth = true
+        res.locals.auth = true
         return next()
     },
     alumnoId: function (req, res, next){
-        if(req.locals.auth === true) return next()
+        if(res.locals.auth === true) return next()
         const userType = req.auth.type;
         const id = req.auth.id;
         if(userType !== 1 || id !== req.params.id ) return res.status(401).json({error: "Acceso no autorizado"})
-        req.locals.auth = true
+        res.locals.auth = true
         return next()
     }
 
