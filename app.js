@@ -1,5 +1,10 @@
 /* APP: Configuraciones principales */
+//Configuración de ambiente (ENV)
 require("dotenv").config()
+
+//Configuración de Passport
+require('./config/passport');
+
 //Express configuration
 const express = require("express");
 //Sequelize Configuration
@@ -9,6 +14,7 @@ const routes = require('./routes')
 
 //Middlewares
 const auth = require('./config/auth');
+
 
 
 //App puesta en marcha
