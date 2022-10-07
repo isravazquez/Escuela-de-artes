@@ -1,4 +1,5 @@
 /* APP: Configuraciones principales */
+require("dotenv").config()
 //Express configuration
 const express = require("express");
 //Sequelize Configuration
@@ -35,7 +36,6 @@ try {
 }
 
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+    console.log("Server listing on PORT", process.env.PORT);  //Se agrega el puerto
 });
