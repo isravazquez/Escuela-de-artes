@@ -10,11 +10,11 @@ const {
 } = require('../controllers/resena')
 
 //Crear reseña
-router.post('/',auth.required, auth.admin, auth.alumno, crearResena);
+router.post('/', auth.admin, auth.alumno, auth.required, crearResena);
 //Actualizar reseña
-router.patch('/:id',auth.required, auth.admin, auth.alumno, actualizarResena)
+router.patch('/:id', auth.admin, auth.alumno, auth.required, actualizarResena)
 //Eliminar reseña
-router.delete('/:id',auth.required, auth.admin, auth.alumno, eliminarResena);
+router.delete('/:id', auth.admin, auth.alumno, auth.required, eliminarResena);
 
 //Obtener todas las reseñas
 //filtrado de reseñas por alumno o actividad por el body

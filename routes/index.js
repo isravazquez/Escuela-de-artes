@@ -29,10 +29,6 @@ router.use('/logIn', logIn);
 router.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 
 
-//Catch 404 
-router.use(function (req, res, next) {
-    res.status(404).json({error: 'Not Found'})
-});
 
 
 module.exports = router;

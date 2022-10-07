@@ -22,7 +22,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(auth.optional);
 
 //Configuración de rutas
-app.use('/v1', routes)
+app.use('/api/v1', routes)
+
+//Catch 404 
+app.use(function (req, res, next) {
+    res.status(404).json({error: 'Not Found'})
+});
+
 
 
 

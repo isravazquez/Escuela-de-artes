@@ -10,15 +10,15 @@ const {
 } = require('../controllers/inscripcion')
 
 //Crear inscripción
-router.post('/',auth.required, auth.admin, crearInscripcion);
+router.post('/', auth.admin, auth.required, crearInscripcion);
 //Actualizar inscripción
-router.patch('/:id',auth.required, auth.admin, actualizarInscripcion);
+router.patch('/:id', auth.admin, auth.required, actualizarInscripcion);
 //Eliminar inscripción
-router.delete('/:id',auth.required, auth.admin, eliminarInscripcion);
+router.delete('/:id', auth.admin, auth.required, eliminarInscripcion);
 
 //Obtener todas las inscripciones
 //Filtrado de inscripciones por alumno o actividad
-router.get('/',auth.required, auth.admin, obtenerInscripciones);
-router.get('/:id',auth.required, auth.admin, obtenerInscripcion);
+router.get('/', auth.admin, auth.required, obtenerInscripciones);
+router.get('/:id', auth.admin, auth.required, obtenerInscripcion);
 
 module.exports = router;
