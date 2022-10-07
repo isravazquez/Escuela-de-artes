@@ -14,11 +14,13 @@ async function crearResena(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, data: data
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, data: data
             });
         }
+        return err;
     }
 };
 
@@ -42,11 +44,13 @@ async function actualizarResena(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: id, data: resena_actualizar
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: id, data: resena_actualizar
             });
         }
+        return err;
     }
 }
 
@@ -70,11 +74,13 @@ async function eliminarResena(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: resena_id, data: resena
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: resena_id, data: resena
             });
         }
+        return err;
     }
 };
 
@@ -116,11 +122,13 @@ async function obtenerResenas(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, alumno_id: alumno_id, actividad_id: actividad_id
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, alumno_id: alumno_id, actividad_id: actividad_id
             });
         }
+        return err;
     }
 };
 
@@ -141,11 +149,13 @@ async function obtenerResena(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: id
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: id
             });
         }
+        return err;
     }
 }
 

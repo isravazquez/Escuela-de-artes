@@ -24,11 +24,13 @@ async function crearInscripcion(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, data: data
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, data: data
             });
         }
+        return err;
     }
 };
 
@@ -52,11 +54,13 @@ async function actualizarInscripcion(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: id, data: inscripcion_actualizar
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: id, data: inscripcion_actualizar
             });
         }
+        return err;
     }
 }
 
@@ -80,11 +84,13 @@ async function eliminarInscripcion(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: inscripcion_id, data: inscripcion
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: inscripcion_id, data: inscripcion
             });
         }
+        return err;
     }
 };
 
@@ -125,11 +131,13 @@ async function obtenerInscripciones(req, res) {
             return res.status(400).json({
                 error: err.parent.detail
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message
             });
         }
+        return err;
     }
 };
 
@@ -150,11 +158,13 @@ async function obtenerInscripcion(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: id
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: id
             });
         }
+        return err;
     }
 }
 

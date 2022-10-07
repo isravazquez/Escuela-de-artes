@@ -7,12 +7,12 @@ const Actividad = require('../models/Actividad');
 
 //Creación de un Maestro
 //Petición requiere un body pero no parámetros 
-async function crearMaestro(req, res) {  
-    const { password:pass, ... maestroBody} = req.body;
+async function crearMaestro(req, res) {
+    const { password: pass, ...maestroBody } = req.body;
 
     try {
         const password = Maestro.crearPassword(pass)
-        const maestroARegistrar = { ... maestroBody, ...password}
+        const maestroARegistrar = { ...maestroBody, ...password }
         const maestro = await Maestro.create(maestroARegistrar);
         delete maestro.dataValues.password_salt
         delete maestro.dataValues.password_hash
@@ -23,11 +23,13 @@ async function crearMaestro(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, data: maestroBody
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, data: maestroBody
             });
         }
+        return err;
     }
 }
 
@@ -51,11 +53,13 @@ async function actualizarMaestro(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, data: cambioSolicitado
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, data: cambioSolicitado
             });
         }
+        return err;
     }
 }
 
@@ -79,11 +83,13 @@ async function eliminarMaestro(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: id, data: maestro
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: id, data: maestro
             });
         }
+        return err;
     }
 }
 
@@ -131,11 +137,13 @@ async function obtenerMaestros(req, res) {
             return res.status(400).json({
                 error: err.parent.detail
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message
             });
         }
+        return err;
     }
 }
 
@@ -156,11 +164,13 @@ async function obtenerMaestro(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: id
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: id
             });
         }
+        return err;
     }
 }
 
@@ -194,11 +204,13 @@ async function detalleActividades(req, res) {
             return res.status(400).json({
                 error: err.parent.detail
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message
             });
         }
+        return err;
     }
 }
 

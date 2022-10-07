@@ -7,10 +7,10 @@ const Resena = require('../models/Resena');
 //Creación de un Alumno
 //Petición requiere un body pero no parámetros 
 async function crearAlumno(req, res) {
-    const { password:pass, ... alumnoBody} = req.body;
+    const { password: pass, ...alumnoBody } = req.body;
     try {
         const password = Alumno.crearPassword(pass)
-        const alumnoARegistrar = { ... alumnoBody, ...password}
+        const alumnoARegistrar = { ...alumnoBody, ...password }
         const alumno = await Alumno.create(alumnoARegistrar);
         delete alumno.dataValues.password_salt
         delete alumno.dataValues.password_hash
@@ -21,8 +21,8 @@ async function crearAlumno(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, data: alumnoBody
             });
-        } 
-        if(err.errors != null) {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, data: alumnoBody
             });
@@ -51,11 +51,13 @@ async function actualizarAlumno(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, data: cambioSolicitado
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, data: cambioSolicitado
             });
         }
+        return err;
     }
 }
 
@@ -79,11 +81,13 @@ async function eliminarAlumno(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: id, data: alumno
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: id, data: alumno
             });
         }
+        return err;
     }
 }
 
@@ -131,11 +135,13 @@ async function obtenerAlumnos(req, res) {
             return res.status(400).json({
                 error: err.parent.detail
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message
             });
         }
+        return err;
     }
 }
 
@@ -156,11 +162,13 @@ async function obtenerAlumno(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: id
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: id
             });
         }
+        return err;
     }
 }
 
@@ -194,11 +202,13 @@ async function detalleInscripciones(req, res) {
             return res.status(400).json({
                 error: err.parent.detail
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message
             });
         }
+        return err;
     }
 
 }
@@ -233,11 +243,13 @@ async function detalleResenas(req, res) {
             return res.status(400).json({
                 error: err.parent.detail
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message
             });
         }
+        return err;
     }
 }
 

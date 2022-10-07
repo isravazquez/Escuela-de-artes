@@ -18,11 +18,13 @@ async function crearActividad(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, data: body
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, data: body
             });
         }
+        return err;
     }
 }
 
@@ -46,11 +48,13 @@ async function actualizarActividad(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, data: cambioSolicitado
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, data: cambioSolicitado
             });
         }
+        return err;
     }
 
 }
@@ -75,11 +79,13 @@ async function eliminarActividad(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: id, data: actividad
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: id, data: actividad
             });
         }
+        return err;
     }
 
 }
@@ -128,11 +134,13 @@ async function obtenerActividades(req, res) {
             return res.status(400).json({
                 error: err.parent.detail
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message
             });
         }
+        return err;
     }
 }
 
@@ -153,11 +161,13 @@ async function obtenerActividad(req, res) {
             return res.status(400).json({
                 error: err.parent.detail, id: id
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message, id: id
             });
         }
+        return err;
     }
 
 }
@@ -192,11 +202,13 @@ async function detalleInscripciones(req, res) {
             return res.status(400).json({
                 error: err.parent.detail
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message
             });
         }
+        return err;
     }
 }
 
@@ -230,11 +242,13 @@ async function detalleResenas(req, res) {
             return res.status(400).json({
                 error: err.parent.detail
             });
-        } else {
+        }
+        if (err.errors != null) {
             return res.status(400).json({
                 error: err.errors[0].message
             });
         }
+        return err;
     }
 }
 
