@@ -38,7 +38,7 @@ Se utilizó mockaroo para poblar la base de datos
 Se realizon consultas a las tablas en postgres, tambien se realizaron actualizaciones  eoliminación de registros
 + [__Link - Postgres__](pdf/7_ConsultasPostgresSQL.pdf)
 
-<img src="script/7_script_proyecto_arte.sql" alt="script_proyecto_arte" > 
+- [__Link - Script transacciones tablas__](script/7_script_proyecto_arte.sql)
 
 -------
 [`Página principal`](../../README.md) | [`Anterior: Sesión - pw1`](../pw1/README.md) | [`Siguiente: Sesión - pw3`](../pw3/README.md)
