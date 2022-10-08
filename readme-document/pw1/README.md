@@ -26,7 +26,7 @@ Se realizó la investigación de las herramientas a utilizar:
 
 #### 4. Histrias de usuario
 Se crearon las historias de usuario en base a los objetivos del proyecto, se discutieron en equipo
-+ [Historias de Usuario](pdf/4_Hisorias_de_usuario.pdf)
++ [Historias de Usuario](pdf/4_Historias_de_usuario.pdf)
 
 #### 5. Entidades y atributos
 Se definió las entidades y atributos del proyecto, se discutió en eqipo
