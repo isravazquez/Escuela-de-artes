@@ -4,6 +4,7 @@ const Resena = require('../models/Resena')
 //Creación de una Reseña
 //Petición requiere un body pero no parámetros 
 async function crearResena(req, res) {
+    //req.auth.id != resena.alumno_id return error verificar que el alumno no pueda editar una resena que no es suya
     const data = req.body;
     try {
         const resena = await Resena.create(data);

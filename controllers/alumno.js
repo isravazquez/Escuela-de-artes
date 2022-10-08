@@ -8,12 +8,12 @@ const Resena = require('../models/Resena');
 //Petición requiere un body pero no parámetros 
 async function crearAlumno(req, res) {
     const { password: pass, ...alumnoBody } = req.body;
-    try {
-        const password = Alumno.crearPassword(pass)
-        const alumnoARegistrar = { ...alumnoBody, ...password }
+    try { //Evitamos mostrar la contraseña por temas de seguridad
+        const password = Alumno.crearPassword(pass);
+        const alumnoARegistrar = { ...alumnoBody, ...password };
         const alumno = await Alumno.create(alumnoARegistrar);
-        delete alumno.dataValues.password_salt
-        delete alumno.dataValues.password_hash
+        delete alumno.dataValues.password_salt;
+        delete alumno.dataValues.password_hash;
         res.status(201).json(alumno);
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición
@@ -36,7 +36,7 @@ async function crearAlumno(req, res) {
 async function actualizarAlumno(req, res) {
     const id = req.params.id;
     const cambioSolicitado = req.body;
-    try {
+    try { //Evitamos mostrar la contraseña por temas de seguridad
         const alumno = await Alumno.findByPk(id);
         if (!alumno) {
             res.status(404).json({ error: `Alumno ${id} no existe` });
@@ -44,6 +44,8 @@ async function actualizarAlumno(req, res) {
         }
         await Alumno.update(cambioSolicitado, { where: { id } });
         const alumno_actualizado = await Alumno.findByPk(id);
+        delete alumno_actualizado.dataValues.password_salt;
+        delete alumno_actualizado.dataValues.password_hash;
         res.status(200).json(alumno_actualizado);
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición
@@ -65,7 +67,7 @@ async function actualizarAlumno(req, res) {
 //Petición no requiere un body pero sí un id en parámetros
 async function eliminarAlumno(req, res) {
     const id = req.params.id;
-    try {
+    try { //Evitamos mostrar la contraseña por temas de seguridad
         const alumno = await Alumno.findByPk(id);
         if (!alumno) {
             res.status(404).json({ error: `Alumno ${id} no existe` });
@@ -74,6 +76,8 @@ async function eliminarAlumno(req, res) {
         await Alumno.destroy(
             { where: { id } }
         );
+        delete alumno.dataValues.password_salt;
+        delete alumno.dataValues.password_hash;
         res.status(200).json({ status: `id alumno ${id} borrada con éxito`, alumno });
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición
@@ -106,27 +110,44 @@ async function obtenerAlumnos(req, res) {
     }
     try { //Queries posibles
         const alumnos = await Alumno.findAll({ order: ['id'] });
+        //Evitamos mostrar la contraseña por temas de seguridad
         if (!alumnos) {
             res.status(404).json({ error: 'Lista de alumnos vacia' });
             return;
         }
-        if (nombre) {
+        if (nombre) { 
             let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].nombre === nombre);
             alumnos_filtrados = Object.fromEntries(alumnos_filtrados);
+            for (const key in alumnos_filtrados) {
+                delete alumnos_filtrados[key].dataValues.password_salt;
+                delete alumnos_filtrados[key].dataValues.password_hash;
+            }
             res.json(alumnos_filtrados);
             return;
         }
         if (apellido) {
             let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].apellido === apellido);
             alumnos_filtrados = Object.fromEntries(alumnos_filtrados);
+            for (const key in alumnos_filtrados) {
+                delete alumnos_filtrados[key].dataValues.password_salt;
+                delete alumnos_filtrados[key].dataValues.password_hash;
+            }
             res.json(alumnos_filtrados);
             return;
         }
         if (email) {
             let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].email === email);
             alumnos_filtrados = Object.fromEntries(alumnos_filtrados);
+            for (const key in alumnos_filtrados) {
+                delete alumnos_filtrados[key].dataValues.password_salt;
+                delete alumnos_filtrados[key].dataValues.password_hash;
+            }
             res.json(alumnos_filtrados);
             return;
+        }
+        for (const key in alumnos) {
+            delete alumnos[key].dataValues.password_salt;
+            delete alumnos[key].dataValues.password_hash;
         }
         res.status(200).json(alumnos);
         return;
@@ -149,12 +170,14 @@ async function obtenerAlumnos(req, res) {
 //Petición no requiere un body pero sí un id en parámetros
 async function obtenerAlumno(req, res) {
     const id = req.params.id;
-    try {
+    try { //Evitamos mostrar la contraseña por temas de seguridad
         const alumno = await Alumno.findByPk(id);
         if (!alumno) {
             res.status(404).json({ error: `Alumno ${id} no existe` });
             return;
         }
+        delete alumno.dataValues.password_salt;
+        delete alumno.dataValues.password_hash;
         res.status(200).json(alumno);
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición
@@ -177,13 +200,15 @@ async function obtenerAlumno(req, res) {
 async function detalleInscripciones(req, res) {
     const idAlumno = req.params.id;
     const idInscripcion = req.params.idInscripcion
-    try {
+    try { //Evitamos mostrar la contraseña por temas de seguridad
         if (idInscripcion === undefined) {
             const alumno = await Alumno.findByPk(idAlumno, {
                 include: {
                     model: Inscripcion
                 }
             });
+            delete alumno.dataValues.password_salt;
+            delete alumno.dataValues.password_hash;
             res.status(200).json(alumno);
             return;
         }
@@ -195,6 +220,8 @@ async function detalleInscripciones(req, res) {
                 }
             }
         });
+        delete alumno.dataValues.password_salt;
+        delete alumno.dataValues.password_hash;
         res.status(200).json(alumno);
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición
@@ -210,7 +237,6 @@ async function detalleInscripciones(req, res) {
         }
         return err;
     }
-
 }
 
 //Obtener una reseña del Alumno
@@ -218,13 +244,15 @@ async function detalleInscripciones(req, res) {
 async function detalleResenas(req, res) {
     const idAlumno = req.params.id;
     const idResena = req.params.idResena
-    try {
+    try { //Evitamos mostrar la contraseña por temas de seguridad
         if (idResena === undefined) {
             const alumno = await Alumno.findByPk(idAlumno, {
                 include: {
                     model: Resena
                 }
             });
+            delete alumno.dataValues.password_salt;
+            delete alumno.dataValues.password_hash;
             res.status(200).json(alumno);
             return;
         }
@@ -236,6 +264,8 @@ async function detalleResenas(req, res) {
                 }
             }
         });
+        delete alumno.dataValues.password_salt;
+        delete alumno.dataValues.password_hash;
         res.status(200).json(alumno);
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición
