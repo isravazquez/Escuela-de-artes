@@ -30,7 +30,7 @@ Se crearon las historias de usuario en base a los objetivos del proyecto, se dis
 
 #### 5. Entidades y atributos
 Se definió las entidades y atributos del proyecto, se discutió en eqipo
-+ [Entidades y Atributos](readme-document/pw1/pdf/5.entidades_y_atributos.pdf)
++ [Entidades y Atributos](readme-document/pw1/pdf/5.Entidades_y_atributos.pdf)
 
 -------
 [`Página principal`](../../README.md) | [`Siguiente: Sesión - pw2`](../pw2/README.md)
