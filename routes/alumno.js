@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const auth = require('../config/auth');
+const passport = require('passport');
 
 const {
     crearAlumno,
@@ -12,24 +13,28 @@ const {
 } = require('../controllers/alumno')
 
 
+
 //Crear nuevo Alumno
-router.post('/',auth.required, auth.admin, crearAlumno);
+router.post('/', passport.authenticate('bearer', {session:false}), auth.admin, auth.required, crearAlumno);
 //Modificar Alumno existente
-router.patch('/:id',auth.required, auth.admin, actualizarAlumno);
+router.patch('/:id', passport.authenticate('bearer', {session:false}), auth.admin, auth.required, actualizarAlumno);
 //Eliminar Alumno
-router.delete('/:id',auth.required, auth.admin, eliminarAlumno);
+router.delete('/:id', passport.authenticate('bearer', {session:false}), auth.admin, auth.required, eliminarAlumno);
 
 //Obtener todos los alumnos
-router.get('/',auth.required, auth.admin, auth.maestro, obtenerAlumnos);
+router.get('/', passport.authenticate('bearer', {session:false}), auth.admin, auth.maestro,auth.required, obtenerAlumnos);
 //Obtener alumno por id
-router.get('/:id',auth.required, auth.admin, auth.maestro, auth.alumnoId, obtenerAlumno);
+router.get('/:id', passport.authenticate('bearer', {session:false}), auth.admin, auth.maestro, auth.alumnoId, auth.required, obtenerAlumno);
 
 //Detalle de inscripciones de cada alumno
 //Si se agrega el id de la inscripción se mostrara exclusivamente
-router.get('/:id/inscripciones/:idInscripcion?',auth.required, auth.admin, auth.maestro, auth.alumnoId, detalleInscripciones);
+router.get('/:id/inscripciones/:idInscripcion?', passport.authenticate('bearer', {session:false}), auth.admin, auth.maestro, auth.alumnoId, auth.required, detalleInscripciones);
 
 //Detalle de reseñas de cada alumno
 //Si se agrega el id de la reseña se mostrara exclusivamente
-router.get('/:id/resenas/:idResena?',auth.required, auth.admin, auth.maestro, auth.alumnoId, detalleResenas);
+router.get('/:id/resenas/:idResena?', passport.authenticate('bearer', {session:false}), auth.admin, auth.maestro, auth.alumnoId, auth.required, detalleResenas);
+
+
+
 
 module.exports = router;
