@@ -2,7 +2,7 @@
 
 >Proyecto Final del Modulo 2: Fundamentos de Backend Santander 2022 elaborado por el equipo 14.
 
-## ** Repositorio: Postwork-1 - Modelado y Arquitectura del Backend **
+## ** Repositorio: Postwork-4 - Introducción a bases de datos **
 
 ### 📋 Reporte - entregables y evidencia
 
@@ -23,22 +23,22 @@ Se creó la base de datos en Heroku, se utilizó el Ad-Ons de Postgres
 <img src="img/3_Add-Ons_Postgres.png" alt="planificacion" > 
 
 #### 4. Conexión con PGAdmin4
-Se configuró poderse conectar con PGAdmin a la base de datos creada en Heroku
-<img src="img/4_ConexionPGAdmin4.png" alt="planificacion" > 
+Se configuró poder conectar con PGAdmin a la base de datos creada en Heroku
+<img src="img/4_ConexionPGAdmin.png" alt="planificacion" > 
 
 #### 5. Esquema base de datos
 Se tradujo el modelo original escrito en el diagrama entidad-relacion a tablas en la base de datos
-<img src="img/5_tablas-pgAdmin.png" alt="planificacion" > 
+<img src="img/5_tablas-pgAdmin.jpg" alt="planificacion" > 
 
 #### 6. Poblado base de datos con Mokaroo
 Se utilizó mockaroo para poblar la base de datos 
 <img src="img/6_Mockaroo.png" alt="planificacion" > 
 
-#### 6. Poblado base de datos con Mokaroo
+#### 7. Poblado base de datos con Mokaroo
 Se realizon consultas a las tablas en postgres, tambien se realizaron actualizaciones  eoliminación de registros
 + [Postgres:](pdf/7_ConsultasPostgresSQL.pdf)
 
-<img src="script/7_proycto_arte.sql" alt="planificacion" > 
+<img src="script/7_proyecto_arte.sql" alt="planificacion" > 
 
 -------
 [`Página principal`](../../README.md) | [`Anterior: Sesión - pw1`](../pw1/README.md) | [`Siguiente: Sesión - pw3`](../pw3/README.md)
