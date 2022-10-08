@@ -8,7 +8,7 @@
 
 #### 1. Objetivos del proyecto
 se discutió en equipo para decidir el proyecto a desarollar y se crearon los objetivos del proyecto
-- [`Objetivo`](rd-obj/Objtivos_del_Proyecto.md)
+- [`Objetivo`](rd-obj/Objetivos_del_Proyecto.md)
 
 #### 2. Planificación temporal
 Se crearon los planes en equipo a través de trello
@@ -22,15 +22,15 @@ Se planificó en equipo cómo se va a desarrollar el proyecto y qué herramienta
 <img src="img/3.diagramas_de_herramientas.png" alt="mission" > 
 
 Se realizó la investigación de las herramientas a utilizar:
-+ [Investigación de Herramientas:](pdf/3.1.Invenstigación_de_Herramientas.pdf)
++ [Investigación de Herramientas:](pdf/3.1_Invenstigación_de_Herramientas.pdf)
 
 #### 4. Histrias de usuario
 Se crearon las historias de usuario en base a los objetivos del proyecto, se discutieron en equipo
-+ [Historias de Usuario](pdf/4.Hisorias_de_usuario.pdf)
++ [Historias de Usuario](pdf/4_Hisorias_de_usuario.pdf)
 
 #### 5. Entidades y atributos
 Se definió las entidades y atributos del proyecto, se discutió en eqipo
-+ [Entidades y Atributos](pdf/5.Entidades_y_atributos.pdf)
++ [Entidades y Atributos](pdf/5_Entidades_y_atributos.pdf)
 
 -------
 [`Página principal`](../../README.md) | [`Siguiente: Sesión - pw2`](../pw2/README.md)
