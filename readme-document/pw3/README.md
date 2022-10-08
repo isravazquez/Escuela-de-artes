@@ -8,7 +8,7 @@
 
 #### 1. esqueleto del proyecto
 se creó el equeleto del proyecto 
-<img src="img/1Skeleton.jpg" alt="Skeleton" > 
+<img src="img/1.Skeleton.jpg" alt="Skeleton" > 
 
 #### 2. dependencias
 Se instalaron las dependencas a utilizar en el proyecto
