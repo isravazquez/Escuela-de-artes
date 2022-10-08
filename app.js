@@ -27,6 +27,11 @@ app.use(express.urlencoded({ extended: false }));
 //Auth Opcional Middleware
 app.use(auth.optional);
 
+//Home rute... Renderizar html en un futuro
+app.get('/', (req,res)=>{
+    return res.redirect('/api/v1/')
+})
+
 //Configuración de rutas
 app.use('/api/v1', routes)
 
