@@ -8,7 +8,7 @@
 
 #### 1. Objetivos del proyecto
 se discutió en equipo para decidir el proyecto a desarollar y se crearon los objetivos del proyecto
-- [`Objetivo`](rd-obj/Objetivos_del_Proyecto.md)
+- [`Objetivo`](rd-obj/1.Objetivos_del_Proyecto.md)
 
 #### 2. Planificación temporal
 Se crearon los planes en equipo a través de trello
