@@ -2,7 +2,7 @@
 
 >Proyecto Final del Modulo 2: Fundamentos de Backend Santander 2022 elaborado por el equipo 14.
 
-## ** Repositorio: Postwork-4 - Introducción a bases de datos **
+## ** Repositorio: Postwork-2 - Introducción a bases de datos **
 
 ### 📋 Reporte - entregables y evidencia
 
