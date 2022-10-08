@@ -1,7 +1,7 @@
 const secret = require("./secret");
 const { expressjwt } = require("express-jwt")
 
-//Fun ción que busca la autenticación bearer desde los headers
+//Funnción que busca la autenticación bearer desde los headers
 function getTokenFromHeader(req) {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
         return req.headers.authorization.split(' ')[1]
@@ -25,9 +25,6 @@ const auth = {
         return next()
     },
     admin: function (req, res, next){
-        //Autenticación al token a través de que exista un usuario
-        if (!req.auth || !req.auth.email) return res.sendStatus(401)
-
         if(res.locals.auth === true) return next()
         const userType = req.auth.type;
         if(userType !== 3) return next()
@@ -35,9 +32,6 @@ const auth = {
         return next()
     },
     maestro: function (req, res, next){
-        //Autenticación al token a través de que exista un usuario
-        if (!req.auth || !req.auth.email) return res.sendStatus(401)
-
         if(res.locals.auth === true) return next()
         const userType = req.auth.type;
         if(userType !== 2) return next()
@@ -45,9 +39,6 @@ const auth = {
         return next()
     },
     maestroId: function (req, res, next){
-        //Autenticación al token a través de que exista un usuario
-        if (!req.auth || !req.auth.email) return res.sendStatus(401)
-
         if(res.locals.auth === true) return next()
         const userType = req.auth.type;
         const id = req.auth.id;
@@ -56,9 +47,6 @@ const auth = {
         return next()
     },
     alumno: function (req, res, next){
-        //Autenticación al token a través de que exista un usuario
-        if (!req.auth || !req.auth.email) return res.sendStatus(401)
-
         if(res.locals.auth === true) return next()
         const userType = req.auth.type;
         if(userType !== 1) return next()
@@ -66,9 +54,6 @@ const auth = {
         return next()
     },
     alumnoId: function (req, res, next){
-        //Autenticación al token a través de que exista un usuario
-        if (!req.auth || !req.auth.email) return res.sendStatus(401)
-
         if(res.locals.auth === true) return next()
         const userType = req.auth.type;
         const id = req.auth.id;
