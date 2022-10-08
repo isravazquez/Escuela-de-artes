@@ -43,7 +43,8 @@ npm run dev
 |Eduardo Trejo |[Eduardo-UX01](https://github.com/Eduardo-UX01)    |![Eduardo](https://drive.google.com/uc?export=view&id=1qQ_1xVqeLbh7_DWUEE-NhjdTuCjpl1o7)|
 |Jaime Vazquez |[isravazquez](https://github.com/isravazquez)      |![Jaime](https://drive.google.com/uc?export=view&id=1CBdfYc8IlgxSjAMSfRVY8TgDYo0UlkSd)  |
 |Javier Luna   |[JavierLuna99](https://github.com/JavierLuna99)    |![Javier](https://drive.google.com/uc?export=view&id=1Ik1j0gwk068BCMw-w4JOhRbO6soi3YB2) |
-|Javier Gloria |[JavierGloria67](https://github.com/JavierGloria67)|![Javier](https://static.wikia.nocookie.net/minion/images/3/32/Dm2bob.jpg/revision/latest?cb=20150724200022&path-prefix=es) |
+|Javier Gloria |[JavierGloria67](https://github.com/JavierGloria67)|![JGM](https://user-images.githubusercontent.com/104937222/194715180-e1adba3b-2442-4c96-a6bd-4ffaeb3a598d.png) |
+
 
 ## Recursos
 - [VIDEO]()
