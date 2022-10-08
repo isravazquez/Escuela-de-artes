@@ -21,11 +21,16 @@ Conforme avanza el proyecto, se van actualizando las actividades en trello
 Se planificó en equipo cómo se va a desarrollar el proyecto y qué herramientas y recursos a usar
 <img src="img/3.diagramas_de_herramientas.png" alt="mission" > 
 
+Se realizó la investigación de las herramientas a utilizar:
++ [Investigación de Herramientas:](readme-document/pw1/pdf/3.1.Invenstigación_de_Herramientas.pdf)
+
 #### 4. Histrias de usuario
 Se crearon las historias de usuario en base a los objetivos del proyecto, se discutieron en equipo
++ [Historias de Usuario](readme-document/pw1/pdf/4.Hisorias_de_usuario.pdf)
 
 #### 5. Entidades y atributos
 Se definió las entidades y atributos del proyecto, se discutió en eqipo
++ [Entidades y Atributos](readme-document/pw1/pdf/5.entidades_y_atributos.pdf)
 
 -------
 [`Página principal`](../../README.md) | [`Siguiente: Sesión - pw2`](../pw2/README.md)
