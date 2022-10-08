@@ -5,4 +5,4 @@ Repo: Postwork-6 - Seguridad
 
 
 -------
-[`Página principal`](../../../Readme.md) | [`Anterior: Sesión - pw5`](../pw5/README.md) | [`Siguiente: Sesión - pw7`](../pw7/README.md)
+[`Página principal`](../../README.md) | [`Anterior: Sesión - pw5`](../pw5/README.md) | [`Siguiente: Sesión - pw7`](../pw7/README.md)

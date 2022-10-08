@@ -49,24 +49,16 @@ npm run dev
 ## Recursos
 - [VIDEO]()
 
-# 📋 Reporte
+### 📋 Reporte - entregables y evidencia
 
 - [`Sesión 01` - Modelado y arquitectura del Backend](readme-document/pw1)
-
 - [`Sesión 02` - Introducción a bases de datos](readme-document/pw2)
-
 - [`Sesión 03` - Sequelize](readme-document/pw3)
-
 - [`Sesión 04` - Express.js](readme-document/pw4)
-
 - [`Sesión 05` - Routes](readme-document/pw5)
-
 - [`Sesión 06` - Seguridad](readme-document/pw6)
-
 - [`Sesión 07` - Manejo de sesiones](readme-document/pw7)
-
 - [`Sesión 08` - Deploy y Documentación](readme-document/pw8)
-
 
 
 ## Comenatrios
