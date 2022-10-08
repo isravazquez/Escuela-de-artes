@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const auth = require('../config/auth');
+const passport = require('passport');
 
 const {
     crearMaestro,
@@ -11,19 +12,19 @@ const {
 } = require('../controllers/maestro')
 
 //Crear nuevo Maestro
-router.post('/',auth.required, auth.admin, crearMaestro);
+router.post('/', passport.authenticate('bearer', {session:false}), auth.admin, auth.required, crearMaestro);
 //Modificar Maestro existente
-router.patch('/:id',auth.required, auth.admin, actualizarMaestro);
+router.patch('/:id', passport.authenticate('bearer', {session:false}), auth.admin, auth.required, actualizarMaestro);
 //Eliminar Maestro
-router.delete('/:id',auth.required, auth.admin, eliminarMaestro);
+router.delete('/:id', passport.authenticate('bearer', {session:false}), auth.admin, auth.required, eliminarMaestro);
 
 //Obtener todos los Maestros
-router.get('/',auth.required, auth.admin, obtenerMaestros);
+router.get('/', passport.authenticate('bearer', {session:false}), auth.admin, auth.required, obtenerMaestros);
 //Obtener maestro por id
-router.get('/:id',auth.required, auth.admin, auth.maestroId, obtenerMaestro);
+router.get('/:id', passport.authenticate('bearer', {session:false}), auth.admin, auth.maestroId, auth.required, obtenerMaestro);
 
 //Detalle de actividades de cada maestro
 //Si se agrega el id de la actividad se mostrara exclusivamente
-router.get('/:id/actividades/:idActividad?',auth.required, auth.admin, auth.maestroId, detalleActividades);
+router.get('/:id/actividades/:idActividad?', passport.authenticate('bearer', {session:false}), auth.admin, auth.maestroId, auth.required, detalleActividades);
 
 module.exports = router;

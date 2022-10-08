@@ -3,14 +3,11 @@ const Maestro = require('../models/Maestro')
 //Require de modelos auxiliares
 const Actividad = require('../models/Actividad');
 
-
-
 //Creación de un Maestro
 //Petición requiere un body pero no parámetros 
 async function crearMaestro(req, res) {
     const { password: pass, ...maestroBody } = req.body;
-
-    try {
+    try { //Evitamos mostrar la contraseña por temas de seguridad
         const password = Maestro.crearPassword(pass)
         const maestroARegistrar = { ...maestroBody, ...password }
         const maestro = await Maestro.create(maestroARegistrar);
@@ -38,7 +35,7 @@ async function crearMaestro(req, res) {
 async function actualizarMaestro(req, res) {
     const id = req.params.id;
     const cambioSolicitado = req.body;
-    try {
+    try { //Evitamos mostrar la contraseña por temas de seguridad
         const maestro = await Maestro.findByPk(id);
         if (!maestro) {
             res.status(404).json({ error: `Maestro ${id} no existe` });
@@ -46,6 +43,8 @@ async function actualizarMaestro(req, res) {
         }
         await Maestro.update(cambioSolicitado, { where: { id } });
         const maestro_actualizado = await Maestro.findByPk(id);
+        delete maestro_actualizado.dataValues.password_salt
+        delete maestro_actualizado.dataValues.password_hash
         res.status(200).json(maestro_actualizado);
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición
@@ -67,7 +66,7 @@ async function actualizarMaestro(req, res) {
 //Petición no requiere un body pero sí un id en parámetros
 async function eliminarMaestro(req, res) {
     const id = req.params.id;
-    try {
+    try { //Evitamos mostrar la contraseña por temas de seguridad
         const maestro = await Maestro.findByPk(id);
         if (!maestro) {
             res.status(404).json({ error: `Maestro ${id} no existe` });
@@ -76,6 +75,8 @@ async function eliminarMaestro(req, res) {
         await Maestro.destroy(
             { where: { id } }
         );
+        delete maestro.dataValues.password_salt;
+        delete maestro.dataValues.password_hash;
         res.status(200).json({ status: `id maestro ${id} borrada con éxito`, maestro });
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición
@@ -108,6 +109,7 @@ async function obtenerMaestros(req, res) {
     }
     try { //Queries posibles
         const maestros = await Maestro.findAll({ order: ['id'] });
+        //Evitamos mostrar la contraseña por temas de seguridad
         if (!maestros) {
             res.status(404).json({ error: 'Lista de maestros vacia' });
             return;
@@ -115,20 +117,36 @@ async function obtenerMaestros(req, res) {
         if (nombre) {
             let maestros_filtrados = Object.entries(maestros).filter(maestro => maestro[1].nombre === nombre);
             maestros_filtrados = Object.fromEntries(maestros_filtrados);
+            for (const key in maestros_filtrados) {
+                delete maestros_filtrados[key].dataValues.password_salt;
+                delete maestros_filtrados[key].dataValues.password_hash;
+            }
             res.json(maestros_filtrados);
             return;
         }
         if (apellido) {
             let maestros_filtrados = Object.entries(maestros).filter(maestro => maestro[1].apellido === apellido);
             maestros_filtrados = Object.fromEntries(maestros_filtrados);
+            for (const key in maestros_filtrados) {
+                delete maestros_filtrados[key].dataValues.password_salt;
+                delete maestros_filtrados[key].dataValues.password_hash;
+            }
             res.json(maestros_filtrados);
             return;
         }
         if (email) {
             let maestros_filtrados = Object.entries(maestros).filter(maestro => maestro[1].email === email);
             maestros_filtrados = Object.fromEntries(maestros_filtrados);
+            for (const key in maestros_filtrados) {
+                delete maestros_filtrados[key].dataValues.password_salt;
+                delete maestros_filtrados[key].dataValues.password_hash;
+            }
             res.json(maestros_filtrados);
             return;
+        }
+        for (const key in maestros) {
+            delete maestros[key].dataValues.password_salt;
+            delete maestros[key].dataValues.password_hash;
         }
         res.status(200).json(maestros);
         return;
@@ -151,12 +169,14 @@ async function obtenerMaestros(req, res) {
 //Petición no requiere un body pero sí un id en parámetros
 async function obtenerMaestro(req, res) {
     const id = req.params.id;
-    try {
+    try { //Evitamos mostrar la contraseña por temas de seguridad
         const maestro = await Maestro.findByPk(id);
         if (!maestro) {
             res.status(404).json({ error: `Maestro ${id} no existe` });
             return;
         }
+        delete maestro.dataValues.password_salt;
+        delete maestro.dataValues.password_hash;
         res.status(200).json(maestro);
         return;
     } catch (err) {
@@ -179,13 +199,15 @@ async function obtenerMaestro(req, res) {
 async function detalleActividades(req, res) {
     const idMaestro = req.params.id;
     const idActividad = req.params.idActividad
-    try {
+    try { //Evitamos mostrar la contraseña por temas de seguridad
         if (idActividad === undefined) {
             const maestro = await Maestro.findByPk(idMaestro, {
                 include: {
                     model: Actividad
                 }
             });
+            delete maestro.dataValues.password_salt;
+            delete maestro.dataValues.password_hash;
             res.status(200).json(maestro);
             return;
         }
@@ -197,6 +219,8 @@ async function detalleActividades(req, res) {
                 }
             }
         });
+        delete maestro.dataValues.password_salt;
+        delete maestro.dataValues.password_hash;
         res.status(200).json(maestro);
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición

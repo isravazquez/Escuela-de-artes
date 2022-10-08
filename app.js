@@ -1,5 +1,10 @@
 /* APP: Configuraciones principales */
+//Configuración de ambiente (ENV)
 require("dotenv").config()
+
+//Configuración de Passport
+require('./config/passport');
+
 //Express configuration
 const express = require("express");
 //Sequelize Configuration
@@ -9,6 +14,7 @@ const routes = require('./routes')
 
 //Middlewares
 const auth = require('./config/auth');
+
 
 
 //App puesta en marcha
@@ -22,7 +28,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(auth.optional);
 
 //Configuración de rutas
-app.use('/v1', routes)
+app.use('/api/v1', routes)
+
+//Catch 404 
+app.use(function (req, res, next) {
+    res.status(404).json({error: 'Not Found'})
+});
+
 
 
 
