@@ -6,4 +6,4 @@
 
 
 -------
-[`Página principal`](../Readme.md) | [`Siguiente: Sesión - pw2`](../pw2/README.md)
+[`Página principal`](../../Readme.md) | [`Siguiente: Sesión - pw2`](../pw2/README.md)

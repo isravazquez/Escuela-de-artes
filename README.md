@@ -63,7 +63,7 @@ npm run dev
 
 - [`Sesión 06` - Seguridad](readme-document/pw6)
 
-- [`Sesión 07` - Manejo de sesiones]readme-document/pw7)
+- [`Sesión 07` - Manejo de sesiones](readme-document/pw7)
 
 - [`Sesión 08` - Deploy y Documentación](readme-document/pw8)
 
