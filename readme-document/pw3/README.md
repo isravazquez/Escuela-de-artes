@@ -5,4 +5,4 @@
 
 
 -------
-[`Página principal`](../../Readme.md) | [`Anterior: Sesión - pw2`](../pw2/README.md) | [`Siguiente: Sesión pw4`](../pw4/README.md)
+[`Página principal`](../../../Readme.md) | [`Anterior: Sesión - pw2`](../pw2/README.md) | [`Siguiente: Sesión pw4`](../pw4/README.md)

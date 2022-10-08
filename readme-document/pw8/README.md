@@ -5,4 +5,4 @@ Repo: Postwork-8 - Deploy y Documentación
 
 
 -------
-[`Página principal`](../../Readme.md) | [`Anterior - pw7`](../pw7/README.md)
+[`Página principal`](../../../Readme.md) | [`Anterior - pw7`](../pw7/README.md)
