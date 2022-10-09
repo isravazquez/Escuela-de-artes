@@ -6,9 +6,9 @@
 
 ### 📋 Reporte - entregables y evidencia - IMG
 
-- [Configuración Passport](1.ConfigPassport)
-- [Control de Accesos](2.ControlAccesos)
-- [Rutas Restricción](3.RutasRestriccion)
+- [Configuración Passport](1.ConfigPassport.png)
+- [Control de Accesos](2.ControlAccesos.png)
+- [Rutas Restricción](3.RutasRestriccion.png)
 
 -------
 [`Página principal`](../README.md)
