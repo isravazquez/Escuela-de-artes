@@ -24,4 +24,4 @@ Se define la configuración de Passport, se crean las funciones para el controld
 
 
 -------
-[`Página principal`](../../README.md) | [`Anterior: Sesión - pw5`](../pw5/README.md) | [`Siguiente: Sesión - pw7`](../pw7/README.md)
+[`Página principal`](../../README.md) | [`Anterior: Sesión - pw5`](../pw5/README.md) | [`Siguiente: Sesión - pw8`](../pw8/README.md)
