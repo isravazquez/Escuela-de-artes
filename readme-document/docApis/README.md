@@ -46,38 +46,38 @@ La siguiente lista muestra las APIs esxistentes y el tipo de acceso que se tiene
 |-----|-----|-----|-----|-----|-----|
 |api/Alumnos|POST|Si|No|No|Alta de Alumnos|
 |api/Alumnos/<id>|PATH|Si|No|No|Modificación Alumno|
-|api/Alumnos?id|DELETE|Si|No|No|Eliminación Alumno|
+|api/Alumnos/<id>|DELETE|Si|No|No|Eliminación Alumno|
 |api/Alumnos|GET|Si|Si|No|Consulta Alumnos / filtrado por id Alumno o idActividad|
-|api/Alumnos?id|GET|Si|Si|Si|*	Consulta de un alumno|
-|api/<id>/inscripciones/<idInscripción>|GET|Si|Si|Si|*	detalle de inscripciones de cada alumno|
-|Api/:id/resenas/:idResena?|GET|Si|Si|Si*|detalle de reseñas de cada alumno|
-| | | | | | | | | |* Solo con su id del alumno|
-|Api/Actividades|POST|Si|No|No|Alta de Actividades|
-|Api/Actividades?id|PATH|Si|No|No|Actualización de Actividades|
-|Api/Actividades?id|DELETE|Si|No|No|Eliminación de Actividades|
-|Api/Actividades|GET|Si|Si|Si|Consulta todas las actividaes / Sin autentificación|
-|Api/Actividades?id|GET|Si|Si|Si|Consulta una actividad / Sin Autentificación|
-|Api/:id/inscripciones/:idInscripción|GET|Si|No|No|Consulta detalle inscripciones por actividad|
-|Api/:id/resenas/:idResena?|GET|Si|No|No|Consulta a detalle reseñas por actividad|
-| | | | | | | |	| | |
-|Api/Inscripciones|POST|Si|No|No|Alta de inscripciones|
-|Api/Inscripciones?id|PATH|Si|No|No|Modificación de inscripciones|
-|Api/Inscripciones?id|DELETE|Si|No|No|Eliminación de inscripciones|
-|Api/Inscripciones|GET|Si|No|No|Consulta de Inscripciones|
-|Api/Inscripciones?id|GET|Si|No|No|Consulta de una inscripción|
-| | | | | | | |	| | |		
-|Api/Maestros|POST|Si|No|No|Alta de Maestros|
-|Api/Maestros?id|PATH|Si|No|No|Modificación de Maestros|
-|Api/Maestros?id|DELETE|Si|No|No|Eliminación de Maestros|
-|Api/Maestros|GET|Si|No|No|Consulta de Maestros|
-|Api/Maestros/id|GET|Si|Si **|No|Consulta de un Maestro|
-|Api(Maestros:id/actividades/:idActividad?|GET|Si|Si **|No|Consulta a detalle de maestros por actividad|
-| | | | | | | |	| | |** Solo e id del maestrro autentificado|
-|Api/ResenasPOST|Si|Si|Alta de reseñas|
-|Api/Resenas?id|PATH|Si|Si|Modificación de reseñas|
-|Api/Resenas?id|DELETE|Si|Si|Eliminación de reseñas|
-|Api/Resenas|GET|Si|Si|Si|Consulta de reseñas|
-|Api/Resenas?id|GET|Si|Si|Si|Consulta de una reseña|
+|api/v1/alumnos/< id >|GET|Si|Si|Si|*	Consulta de un alumno|
+|api/v1/< id >/inscripciones/<idInscripción>|GET|Si|Si|Si|*	detalle de inscripciones de cada alumno|
+|api/v1/<id>/resenas/<idResena>|GET|Si|Si|Si*|detalle de reseñas de cada alumno|
+| | | | | |* Solo con su id del alumno|
+|api/v1/actividades|POST|Si|No|No|Alta de Actividades|
+|api/v1/actividades/< id >|PATH|Si|No|No|Actualización de Actividades|
+|api/v1/actividades/< id >|DELETE|Si|No|No|Eliminación de Actividades|
+|api/v1/actividades|GET|Si|Si|Si|Consulta todas las actividaes / Sin autentificación|
+|api/v1/actividades/< id >|GET|Si|Si|Si|Consulta una actividad / Sin Autentificación|
+|api/v1/< id >/inscripciones/<idInscripcion>|GET|Si|No|No|Consulta detalle inscripciones por actividad|
+|api/v1/< id >/resenas/<idResena>|GET|Si|No|No|Consulta a detalle reseñas por actividad|
+| | | | | | |
+|api/v1/inscripciones|POST|Si|No|No|Alta de inscripciones|
+|api/v1/inscripciones/< id >|PATH|Si|No|No|Modificación de inscripciones|
+|api/v1/inscripciones/< id >|DELETE|Si|No|No|Eliminación de inscripciones|
+|api/v1/inscripciones|GET|Si|No|No|Consulta de Inscripciones|
+|api/v1/inscripciones/< id >|GET|Si|No|No|Consulta de una inscripción|
+| | | | | | |	
+|api/v1/maestros|POST|Si|No|No|Alta de Maestros|
+|api/v1/maestros/< id >|PATH|Si|No|No|Modificación de Maestros|
+|api/v1/maestros/< id >|DELETE|Si|No|No|Eliminación de Maestros|
+|api/v1/maestros|GET|Si|No|No|Consulta de Maestros|
+|api/v1/maestros/< id >|GET|Si|Si **|No|Consulta de un Maestro|
+|api/v1/maestros/< id >/actividades/<idActividad>|GET|Si|Si **|No|Consulta a detalle de maestros por actividad|
+| | | | | |** Solo el id del maestrro autentificado|
+|api/v1/resenas|POST|Si|No|Si|Alta de reseñas|
+|api/v1/resenas/< id >|PATH|Si|No|Si|Modificación de reseñas|
+|api/v1/resenas/< id >|DELETE|Si|No|Si|Eliminación de reseñas|
+|api/v1/resenas|GET|Si|Si|Si|Consulta de reseñas|
+|api/v1/resenas/< id >|GET|Si|Si|Si|Consulta de una reseña|
 
 
 -------
