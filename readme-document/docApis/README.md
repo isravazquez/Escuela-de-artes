@@ -42,7 +42,7 @@ La siguiente lista muestra las APIs esxistentes y el tipo de acceso que se tiene
 
 **Tipos de Acceso**
 
-|API|Método|Administrador|Maestro|Alumno|Comentarios|
+|API|Método|Admin|Maestro|Alumno|Comentarios|
 |-----|-----|-----|-----|-----|-----|
 |api/Alumnos|POST|Si|No|No|Alta de Alumnos|
 |api/Alumnos/< id >|PATH|Si|No|No|Modificación Alumno|
