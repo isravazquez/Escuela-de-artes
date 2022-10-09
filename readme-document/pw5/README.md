@@ -17,10 +17,10 @@ Se reestructura el código del proyecto en base a los directorios defindos para 
 
 #### ejemplo configuración Routes
 
-+ [__Link configuración Routes__](pdf/4D_ConfiguracionRouter.pdf)
++ [__Link configuración Routes__](pdf/4D-ConfiguracionRouter.pdf)
 <img src="img/3C-EjemploRoutes.png" alt="Configuracon Router" >
 
-#### Ejemplo Estructura de Roues
+#### Ejemplo Estructura de Routes
 <img src="img/5D-EstructuraRoutes.png" alt="Estructura Routes" >
 
  
