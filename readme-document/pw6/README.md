@@ -13,7 +13,7 @@ Se instala el paquete crypto y se protegen datos sensibles
 #### 1.- Identificación datos sensibles
 
 Se identifican datos sensibles en tablas del proyecto, siendo el **Password** a proteger
-+ [__Link datos sensibles__](pdf/1.DatosSensubles.pdf)
++ [__Link datos sensibles__](pdf/1.DatosSensibles.pdf)
 
 #### 2.- Ejemplo paquete crypto
 
