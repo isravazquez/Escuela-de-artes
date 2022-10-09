@@ -40,7 +40,7 @@ npm run dev
 ## Documentación - APIs-Sistema Escolar
 #### url
 https://apparteycultura.herokuapp.com/api/v1
-- [`Apis`](readme-document/apis)
+- [`Apis`](readme-document/docapis)
 
 #### swagger
 https://apparteycultura.herokuapp.com/api/v1/doc
