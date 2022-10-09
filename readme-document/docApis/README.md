@@ -45,12 +45,12 @@ La siguiente lista muestra las APIs esxistentes y el tipo de acceso que se tiene
 |API|Método|Administrador|Maestro|Alumno|Comentarios|
 |-----|-----|-----|-----|-----|-----|
 |api/Alumnos|POST|Si|No|No|Alta de Alumnos|
-|api/Alumnos/<id>|PATH|Si|No|No|Modificación Alumno|
-|api/Alumnos/<id>|DELETE|Si|No|No|Eliminación Alumno|
+|api/Alumnos/< id >|PATH|Si|No|No|Modificación Alumno|
+|api/Alumnos/< id >|DELETE|Si|No|No|Eliminación Alumno|
 |api/Alumnos|GET|Si|Si|No|Consulta Alumnos / filtrado por id Alumno o idActividad|
 |api/v1/alumnos/< id >|GET|Si|Si|Si|*	Consulta de un alumno|
 |api/v1/< id >/inscripciones/<idInscripción>|GET|Si|Si|Si|*	detalle de inscripciones de cada alumno|
-|api/v1/<id>/resenas/<idResena>|GET|Si|Si|Si*|detalle de reseñas de cada alumno|
+|api/v1/< id >/resenas/<idResena>|GET|Si|Si|Si*|detalle de reseñas de cada alumno|
 | | | | | |* Solo con su id del alumno|
 |api/v1/actividades|POST|Si|No|No|Alta de Actividades|
 |api/v1/actividades/< id >|PATH|Si|No|No|Actualización de Actividades|
