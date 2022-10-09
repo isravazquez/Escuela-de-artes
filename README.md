@@ -78,7 +78,6 @@ Tus comentarios son bienvenidos para mejorar. [Issues](https://github.com/israva
 Si te gustó da ⭐️ ¡Gracias!
 
 ## Créditos
-- [TheMealDB](https://www.themealdb.com/api.php) para la API externa.
 - [Sergio]() Nuesto experto en BEDU (Profesor).
 - [Héctor Sifuentes](https://www.linkedin.com/in/hectorsifloz) Teaching Assistant.
 - [Pedro Fragoso](https://www.linkedin.com/in/pedrofragosomaldonado) Teaching Assistant.
