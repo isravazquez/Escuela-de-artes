@@ -1,0 +1,62 @@
+Documentación
+
+Alumno: 
+	Crear
+		Admin
+	Actualizar
+		Admin
+	Eliminar
+		Admin
+	Obtener todos
+		Admin, Maestro
+	Obtener uno
+		Admin, Maestro, Alumno con ese id
+
+
+Maestro:
+	Crear
+		Admin
+	Actualizar
+		Admin
+	Eliminar
+		Admin
+	Obtener todos
+		Admin
+	Obtener uno
+		Admin, Maestro con ese id
+
+Actividad:
+	Crear
+		Admin,
+	Actualizar
+		Admin
+	Eliminar
+		Admin
+	Obtener todos
+		Admin, Alumno, Maestro
+	Obtener uno
+		Admin, Alumno, Maestro
+
+Reseña:
+	Crear
+		Admin, Alumno
+	Actualizar
+		Admin, Alumno
+	Eliminar
+		Admin, Alumno
+	Obtener todos
+		Admin, Alumno, Maestro
+	Obtener uno
+		Admin, Alumno, Maestro
+
+Inscripción:
+	Crear
+		Admin,
+	Actualizar
+		Admin
+	Eliminar
+		Admin
+	Obtener todos
+		Admin
+	Obtener uno
+		Admin, Alumno, Maestro

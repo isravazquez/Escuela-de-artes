@@ -18,6 +18,10 @@ Se define la configuración de Passport, se crean las funciones para el controld
 #### 3.- Restricción rutas
 <img src="img/3.RutasRestriccion.png" alt="Restricción de Rutas" >
 
+#### 3.- Permisos por tipo de acceso
+<img src="img/4.Permisos.txt" alt="Permisos" >
+
+
 
 -------
 [`Página principal`](../../README.md) | [`Anterior: Sesión - pw5`](../pw5/README.md) | [`Siguiente: Sesión - pw7`](../pw7/README.md)

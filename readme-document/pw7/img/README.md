@@ -9,6 +9,6 @@
 - [Configuración Passport](1.ConfigPassport.png)
 - [Control de Accesos](2.ControlAccesos.png)
 - [Rutas Restricción](3.RutasRestriccion.png)
-
+- [Permisos por tipo de acceso](4.RutasRestriccion.txt)
 -------
 [`Página principal`](../README.md)
