@@ -16,7 +16,7 @@
 - [Crear Inscripción](3.CRUD-CrearInscripcion.png)
 
 - [Consulta Inscripciones por ID](4.-ConsultaPorID_Inscripciones.png)
-- [Consulta Inscripciones](5.ConsultaInscriciones.png)
+- [Consulta Inscripciones](5.consultaInscriciones.png)
 
 - [Pregunta Qué pasaría...](6.Preguntas.png)
 
