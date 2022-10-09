@@ -44,7 +44,7 @@ https://apparteycultura.herokuapp.com/api/v1
 - [`Apis`](readme-document/apis)
 
 #### swagger
-https://apparteycultura.herokuapp.com/v1/doc
+https://apparteycultura.herokuapp.com/api/v1/doc
 
 
 ## Autores
