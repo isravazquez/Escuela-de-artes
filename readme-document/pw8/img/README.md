@@ -9,7 +9,7 @@
 - [Documentación swager](1A.swagger.png)
 - [Documentación swagger - cuerpo](1B.swagger.png)
 - [Documentación swagger - esquema](1C.swagger.png)
-- [Variables de entorno](2.variablesentorno.png)
+- [Variables de entorno](2.variblesentorno.png)
 - [Deploy en heroku](3.deployheroku.png)
 - [Consulta con token](4.consultacontoken.png)
 - [Consulta sin token](4.consultasintoken.png)
