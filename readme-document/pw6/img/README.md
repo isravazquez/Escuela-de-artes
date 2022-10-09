@@ -8,7 +8,7 @@
 
 - [Ejemplo paquete crypto](2.PaqueteCrypto.png)
 - [Ejemplo crypto](3.Crypto.png)
-- [Ejemplo funcion crypto](4.Functionscrypto.png)
+- [Ejemplo funcion crypto](4.FunctionsCrypto.png)
 - [Pregunta](5.Cual.png)
 
 -------
