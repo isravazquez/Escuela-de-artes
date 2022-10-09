@@ -19,7 +19,7 @@ Se define la configuración de Passport, se crean las funciones para el controld
 <img src="img/3.RutasRestriccion.png" alt="Restricción de Rutas" >
 
 #### 3.- Permisos por tipo de acceso
-+ [__Link Permisos por tipo de acceso__](pdf/4.Permisos.txt)
++ [__Link Permisos por tipo de acceso__](img/4.Permisos.txt)
 
 
 
