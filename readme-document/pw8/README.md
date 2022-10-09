@@ -8,7 +8,7 @@
 
 Se crea la documentación en swagger y se realiza el deploy en heroku, se valida funcionen bien las apis de acuerdo a sus accesos asignados con y sin token
 
-#### 1.- documentación en Swagger
+#### 1.- Documentación en Swagger
 
 ###### apis
 <img src="img/1A.swagger.png" alt="ejemplo swagger 1" >
@@ -17,8 +17,8 @@ Se crea la documentación en swagger y se realiza el deploy en heroku, se valida
 ##### esquema en swagger
 <img src="img/1C.swagger.png" alt="ejemplo swagger 3" >
 
-#### 2.- configuración variables de entorno
-<img src="img/2.variablesentorno.png" alt="Variables Entorno" >
+#### 2.- Configuración variables de entorno
+<img src="img/2.variblesentorno.png" alt="Variables Entorno" >
 
 #### 3.- Deploy en heroku
 <img src="img/3.deployheroku.png" alt="Deploy en heroku" >
