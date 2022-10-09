@@ -6,7 +6,7 @@
 
 ### 📋 Reporte - entregables y evidencia - PDF
 
-- [Ejemplo configuración Routes](4D-ConfiguacionRouter.pdf)
+- [Ejemplo configuración Routes](4D-ConfiguracionRouter.pdf)
 
 -------
 [`Página principal`](../README.md)
