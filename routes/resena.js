@@ -19,8 +19,8 @@ router.delete('/:id', passport.authenticate('bearer', {session:false}), auth.adm
 
 //Obtener todas las reseñas
 //filtrado de reseñas por alumno o actividad por el body
-router.get('/', passport.authenticate('bearer', {session:false}), auth.required, obtenerResenas);
+router.get('/', passport.authenticate('bearer', {session:false}), /* auth.required, */ obtenerResenas);
 //Obtener reseña por id
-router.get('/:id', passport.authenticate('bearer', {session:false}), auth.required, obtenerResena);
+router.get('/:id', passport.authenticate('bearer', {session:false}), /* auth.required,  */obtenerResena);
 
 module.exports = router;

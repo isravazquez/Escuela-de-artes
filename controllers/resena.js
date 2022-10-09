@@ -64,11 +64,11 @@ async function eliminarResena(req, res) {
         if (!resena) {
             res.status(404).json({ error: `Reseña ${resena_id} no existe` });
             return;
-        };
+        }
         await Resena.destroy(
             { where: { id: resena_id } }
-        )
-        res.status(200).json({ status: `id reseña ${id} borrada con éxito`, alumno });
+        );
+        res.status(200).json({ status: `id reseña ${resena_id} borrada con éxito`, resena });
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
@@ -90,7 +90,8 @@ async function eliminarResena(req, res) {
 async function obtenerResenas(req, res) {
     const alumno_id = req.query.alumno_id;
     const actividad_id = req.query.actividad_id;
-    const params = ['alumno_id', 'actividad_id'];
+    const calificacion = req.query.calificacion;
+    const params = ['alumno_id', 'actividad_id', 'calificacion'];
     for (const parametro in req.query) {
         if (!params.includes(parametro)) {
             res.status(404).json({ error: `nombre parámetro ${parametro} incorrecto` });
@@ -105,13 +106,19 @@ async function obtenerResenas(req, res) {
             return;
         }
         if (alumno_id) {
-            let resenas_filtrados = Object.entries(resenas).filter(resena => resena[1].alumno_id == alumno_id);  ////tipo dato diferente , se usa condición con ==
+            let resenas_filtrados = Object.entries(resenas).filter(resena => resena[1].alumno_id == alumno_id);  
             resenas_filtrados = Object.fromEntries(resenas_filtrados);
             res.json(resenas_filtrados);
             return;
         }
         if (actividad_id) {
-            let resenas_filtrados = Object.entries(resenas).filter(resena => resena[1].actividad_id == actividad_id);  //tipo dato diferente, se usa condición con ==
+            let resenas_filtrados = Object.entries(resenas).filter(resena => resena[1].actividad_id == actividad_id);  
+            resenas_filtrados = Object.fromEntries(resenas_filtrados);
+            res.json(resenas_filtrados);
+            return;
+        }
+        if (calificacion) {
+            let resenas_filtrados = Object.entries(resenas).filter(resena => resena[1].calificacion == calificacion);  
             resenas_filtrados = Object.fromEntries(resenas_filtrados);
             res.json(resenas_filtrados);
             return;
@@ -121,12 +128,12 @@ async function obtenerResenas(req, res) {
     } catch (err) { //Existen dos tipos de errores posibles en la petición
         if (err.parent != null) {
             return res.status(400).json({
-                error: err.parent.detail, alumno_id: alumno_id, actividad_id: actividad_id
+                error: err.parent.detail
             });
         }
         if (err.errors != null) {
             return res.status(400).json({
-                error: err.errors[0].message, alumno_id: alumno_id, actividad_id: actividad_id
+                error: err.errors[0].message
             });
         }
         return err;

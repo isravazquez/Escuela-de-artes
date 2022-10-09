@@ -32,9 +32,10 @@
 
 /**
  * @swagger
- * /v1/maestros:
+ * api/v1/maestros:
  *  post:
- *    summary: da de alta a un maestro
+ *    summary: Crear Maestro
+ *    description: Dar de alta un Maestro. Requiere autenticación Bearer
  *    tags: [Maestro]
  *    requestBody:
  *      required: true
@@ -45,15 +46,18 @@
  *            $ref: '#/components/schemas/Maestro'
  *    responses:
  *      201:
- *        description: nuevo maestro fue creado!
+ *        description: Nuevo Maestro fue creado!
+ *      400:
+ *        description: Error en la petición
  */
 
 //Actualizar maestro
 /**
  * @swagger
- * /v1/maestros/{id}:
+ * api/v1/maestros/{id}:
  *  patch:
- *    summary: actualizar datos maestro
+ *    summary: Actualizar Maestro
+ *    description: Actualizar datos de un Maestro. Requiere autenticación Bearer
  *    tags: [Maestro]
  *    parameters:
  *      - in: path
@@ -71,22 +75,25 @@
  *            $ref: '#/components/schemas/Maestro'
 *    responses:
  *      200:
- *        description: maestro actualizado
+ *        description: Maestro actualizado
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Maestro'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: mastro no encontrado       
+ *        description: Maestro no encontrado   
  */
 
 //Eliminar maestro
 /**
  * @swagger
- * /v1/maestros/{id}:
+ * api/v1/maestros/{id}:
  *  delete:
- *    summary: eliminar a un maestro
+ *    summary: Eliminar Maestro
+ *    description: Dar de baja un Maestro. Requiere autenticación Bearer
  *    tags: [Maestro]
  *    parameters:
  *      - in: path
@@ -97,23 +104,26 @@
  *        description: id del maestro
  *    responses:
  *      200:
- *        description: maestro eliminado
+ *        description: Maestro eliminado
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Maestro'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: maestro no encontrado      
+ *        description: Maestro no encontrado      
  */
 
 //Obtener todos los maestros
 //filtrado de maestros por nombre, apellido o email
 /**
  * @swagger
- * /v1/maestros:
+ * api/v1/maestros:
  *  get:
- *    summary: obtener todos los maestros
+ *    summary: Obtener Maestros
+ *    description: Obtener todos los Maestros. Requiere autenticación Bearer
  *    tags: [Maestro]
  *    parameters:
  *      - in: query
@@ -136,21 +146,26 @@
  *        description: email del maestro
  *    responses:
  *      200:
- *        description: Todos los maestros
+ *        description: Todos los Maestros
  *        content:
  *          application/json:
  *            schema:
  *              type: array
  *              items: 
  *                $ref: '#/components/schemas/Maestro'
+ *      400:
+ *        description: Error en la petición
+ *      404: 
+ *        description: Lista de Maestros vacía
  */
 
 //Obtener maestro por id
 /**
  * @swagger
- * /v1/maestros/{id}:
+ * api/v1/maestros/{id}:
  *  get:
- *    summary: obtiene un maestro
+ *    summary: Obtener Maestro
+ *    description: Obtener un Maestro por ID. Requiere autenticación Bearer
  *    tags: [Maestro]
  *    parameters:
  *      - in: path
@@ -161,12 +176,14 @@
  *        description: id del maestro
  *    responses:
  *      200:
- *        description: Todos los maestros
+ *        description: Maestro seleccionado
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Maestro'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: maestro no encontrado        
+ *        description: Maestro no encontrado        
  */
