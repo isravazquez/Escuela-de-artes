@@ -17,9 +17,10 @@ Se identifican datos sensibles en tablas del proyecto, siendo el **Password** a 
 #### Ejemplo paquete crypto
 <img src="img/2.PaqueteCrypto.png" alt="Ejemplo paquete crypto" >
 <img src="img/3.Crypto.png" alt="Ejemplo crypto" >
-<img src="img/4.Functionscrypto.png" alt="function crypto" >
+<img src="img/4.FunctionsCrypto.png" alt="function crypto" >
 
 #### Pregunta Mejor método para proteger los datos
+
 <img src="img/5.Cual.png" alt="pregunta" >
 
 
