@@ -14,5 +14,6 @@ Repositorio de entregables y evidencia por cada sesión del proyecto
 - [`Sesión 07` - Manejo de sesiones](pw7)
 - [`Sesión 08` - Deploy y Documentación](pw8)
 
+- [`Evidencias` - Trabajo en equipo](trabajoequipo)
 -------
 [`Página principal`](../README.md)

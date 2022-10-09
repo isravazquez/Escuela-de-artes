@@ -60,6 +60,7 @@ npm run dev
 - [`Sesión 07` - Manejo de sesiones](readme-document/pw7)
 - [`Sesión 08` - Deploy y Documentación](readme-document/pw8)
 
+- [`Evidencias` - Trabajo en equipo](readme-document/trabajoequipo)
 
 ## Comenatrios
 Tus comentarios son bienvenidos para mejorar. [Issues](https://github.com/isravazquez/Escuela-de-artes/issues)
