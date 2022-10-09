@@ -6,13 +6,14 @@
 
 #### Apis escuela de Artes
 APIs para gestionar las actividades de la escuela de artes.
+
 Se podrá registrar a un alumno e inscribirlo a una actividad, dar mantenimiento a las actividades, registrar a un maestro y asignarlo a una actividad, el alumno podrá capturar reseñas y dar una calificación en la reseña, así como realizar consultas a las actividades a las que está inscrito.
 
-El desarrollo de las apis está pensado para ser gestionado por administradores del sistema y restringir las operaciones de crear y eliminar a los alumnos.
+El desarrollo de las APIs está pensado para ser gestionado por administradores del sistema y restringir las operaciones de crear y eliminar a los alumnos.
 
 #### Características
-- Las Apis fuero desarrolladas con RestFul - JSON
-- Pra consumir las apis es necesario un token de acceso (ver la sección de autentificación)
+- Las APIs fuero desarrolladas con RestFul - JSON
+- Pra consumir las APIs es necesario un token de acceso (ver la sección de autentificación)
 - La API e encuentra publicada en https://apparteycultura.herokuapp.com/api/v1
 - Para pruebas se puede ejecutar en http://localhost:3000/api/v1 para esto es ncesario que se cree el ambiente de pruebas en el equipo local bajando la aplicación de https://github.com/isravazquez/Escuela-de-artes.git.
 
@@ -30,7 +31,8 @@ Para la generación del token, proporcionar:
 	"password": "password"
 }
 
-Dependiendo del tipo de acceso, se generará el token y se tendran accesos diferetes a las APIs de acuerdo a los accesos asignados
+Dependiendo del tipo de acceso, se generará el token y se tendran accesos diferetes APIs de acuerdo a los accesos asignados
+
 Únicamente los adminstradores podrán tener acceso a todas la APIs del sistema.
 
 Para la generación del token se deberá ejecutar la API: 
@@ -38,7 +40,6 @@ http://apparteycultura.herokuapp.com/api/v1//logIn y proporcionar en el cuerpo, 
 
 #### APIs y Reglas de acceso
 La siguiente lista muestra las APIs esxistentes y el tipo de acceso que se tiene dependiendo de que si es un administrador, maestro o alumno.
-
 
 **Tipos de Acceso**
 
