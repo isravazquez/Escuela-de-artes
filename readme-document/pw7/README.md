@@ -10,13 +10,13 @@ Se define la configuración de Passport, se crean las funciones para el controld
 
 
 #### 1.- Configuración Passport
-<img src="img/1.ConfigPassport" alt="Configuración Password" >
+<img src="img/1.ConfigPassport.png" alt="Configuración Password" >
 
 #### 2.- Control de accesos
-<img src="img/2.ControlAccesos" alt="Control Accesos" >
+<img src="img/2.ControlAccesos.png" alt="Control Accesos" >
 
 #### 3.- Restricción rutas
-<img src="img/3.RutasRestriccion" alt="Restricción de Rutas" >
+<img src="img/3.RutasRestriccion,png" alt="Restricción de Rutas" >
 
 
 -------
