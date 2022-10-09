@@ -38,7 +38,6 @@ npm run dev
 ```
 
 ## Documentación - APIs-Sistema Escolar
-
 #### url
 https://apparteycultura.herokuapp.com/api/v1
 - [`Apis`](readme-document/apis)
