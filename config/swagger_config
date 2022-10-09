@@ -14,7 +14,14 @@ const swaggerSpec = {
         },
         servers: [
             {
-                url: "http://localhost:3000"
+                url: "http://localhost:3000",
+                "description": "Local server",
+                "env": "development"
+            },
+            {
+                url: "https://apparteycultura.herokuapp.com",
+                "description": "Production server",                
+                "env": "production"
             }
         ]
     },
