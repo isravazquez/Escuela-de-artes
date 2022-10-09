@@ -14,7 +14,7 @@ Se crea la documentación en swagger y se realiza el deploy en heroku, se valida
 <img src="img/1A.swagger.png" alt="ejemplo swagger 1" >
 <img src="img/1B.swagger.png" alt="ejemplo swagger 2" >
 
-##### esquema en swagger
+##### Esquema en swagger
 <img src="img/1C.swagger.png" alt="ejemplo swagger 3" >
 
 #### 2.- Configuración variables de entorno
@@ -25,10 +25,10 @@ Se crea la documentación en swagger y se realiza el deploy en heroku, se valida
 
 #### 4.- Deploy-Pruebas de acceso en la api
 
-##### consulta con token
+##### Consulta con token
 <img src="img/4.consultacontoken.png" alt="Deploy en heroku" >
 
-##### consulta sin token
+##### Consulta sin token
 <img src="img/4.consultasintoken.png" alt="Deploy en heroku" >
 
 
