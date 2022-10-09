@@ -2,7 +2,7 @@
 
 >Proyecto Final del Modulo 2: Fundamentos de Backend Santander 2022 elaborado por el equipo 14.
 
-## ** Repositorio: Postwork-3 - Sequelize **
+## ** Repositorio: Postwork-4 - Sequelize **
 
 ### 📋 Reporte - entregables y evidencia - IMG
 
@@ -16,7 +16,7 @@
 - [Crear Inscripción](3.CreaInscripcion.png)
 
 - [Consulta Inscripciones por ID](4.ConsultaPorID_Inscripciones.png)
-- [Consulta Inscripciones](5.ConsultaInscripciones.png)
+- [Consulta Inscripciones](5.ConsultaInscriciones.png)
 
 - [Pregunta Qué pasaría...](6.Preguntas.png)
 
