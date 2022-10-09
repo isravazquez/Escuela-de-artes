@@ -56,7 +56,7 @@ https://apparteycultura.herokuapp.com/api/v1/doc
 
 
 ## Recursos
-- [VIDEO]()
+- [VIDEO](https://drive.google.com/file/d/10QKO6vkcA53XWyGDtSTe9Ix4nLsZtkE4/view?usp=sharing)
 
 ### 📋 Reporte - entregables y evidencia
 
