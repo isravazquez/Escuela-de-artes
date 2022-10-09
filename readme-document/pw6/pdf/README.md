@@ -6,7 +6,7 @@
 
 ### 📋 Reporte - entregables y evidencia - PDF
 
-- [Datps Sensibles](41.DatosSensibles.pdf)
+- [Datos Sensibles](41.DatosSensibles.pdf)
 
 -------
 [`Página principal`](../README.md)
