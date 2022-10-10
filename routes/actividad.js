@@ -20,9 +20,9 @@ router.patch('/:id', passport.authenticate('bearer', {session:false}), auth.admi
 router.delete('/:id', passport.authenticate('bearer', {session:false}), auth.admin, auth.required, eliminarActividad);
 
 //Obtener todos las actividades
-router.get('/', passport.authenticate('bearer', {session:false}), /* auth.required, */ obtenerActividades);
+router.get('/', passport.authenticate('bearer', {session:false}), auth.admin, auth.maestro, auth.alumno, auth.required, obtenerActividades);
 //Obtener actividad por id
-router.get('/:id', passport.authenticate('bearer', {session:false}), /* auth.required, */ obtenerActividad);
+router.get('/:id', passport.authenticate('bearer', {session:false}), auth.admin, auth.maestro, auth.alumno, auth.required, obtenerActividad);
 
 //Detalle de inscripciones de cada actividad
 //Si se agrega el id de la inscripción se mostrara exclusivamente
