@@ -115,7 +115,7 @@ async function obtenerMaestros(req, res) {
             return;
         }
         if (nombre) {
-            let maestros_filtrados = Object.entries(maestros).filter(maestro => maestro[1].nombre === nombre);
+            let maestros_filtrados = Object.entries(maestros).filter(maestro => maestro[1].nombre == nombre);
             maestros_filtrados = Object.fromEntries(maestros_filtrados);
             for (const key in maestros_filtrados) {
                 delete maestros_filtrados[key].dataValues.password_salt;
@@ -125,7 +125,7 @@ async function obtenerMaestros(req, res) {
             return;
         }
         if (apellido) {
-            let maestros_filtrados = Object.entries(maestros).filter(maestro => maestro[1].apellido === apellido);
+            let maestros_filtrados = Object.entries(maestros).filter(maestro => maestro[1].apellido == apellido);
             maestros_filtrados = Object.fromEntries(maestros_filtrados);
             for (const key in maestros_filtrados) {
                 delete maestros_filtrados[key].dataValues.password_salt;
@@ -135,7 +135,7 @@ async function obtenerMaestros(req, res) {
             return;
         }
         if (email) {
-            let maestros_filtrados = Object.entries(maestros).filter(maestro => maestro[1].email === email);
+            let maestros_filtrados = Object.entries(maestros).filter(maestro => maestro[1].email == email);
             maestros_filtrados = Object.fromEntries(maestros_filtrados);
             for (const key in maestros_filtrados) {
                 delete maestros_filtrados[key].dataValues.password_salt;

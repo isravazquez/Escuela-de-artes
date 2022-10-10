@@ -66,7 +66,7 @@ async function eliminarActividad(req, res) {
     try {
         const actividad = await Actividad.findByPk(id);
         if (!actividad) {
-            res.status(404).json({ error: 'Actividad no encontrada' });
+            res.status(404).json({ error: `Actividad ${id} no existe` });
             return;
         }
         await Actividad.destroy(
@@ -110,19 +110,19 @@ async function obtenerActividades(req, res) {
             return;
         }
         if (nombre) {
-            let actividades_filtradas = Object.entries(actividades).filter(actividad => actividad[1].nombre === nombre);
+            let actividades_filtradas = Object.entries(actividades).filter(actividad => actividad[1].nombre == nombre);
             actividades_filtradas = Object.fromEntries(actividades_filtradas);
             res.json(actividades_filtradas);
             return;
         }
         if (maestro_id) {
-            let actividades_filtradas = Object.entries(actividades).filter(actividad => actividad[1].maestro_id === maestro_id);
+            let actividades_filtradas = Object.entries(actividades).filter(actividad => actividad[1].maestro_id == maestro_id);
             actividades_filtradas = Object.fromEntries(actividades_filtradas);
             res.json(actividades_filtradas);
             return;
         }
         if (costo) {
-            let actividades_filtradas = Object.entries(actividades).filter(actividad => actividad[1].costo === costo);
+            let actividades_filtradas = Object.entries(actividades).filter(actividad => actividad[1].costo == costo);
             actividades_filtradas = Object.fromEntries(actividades_filtradas);
             res.json(actividades_filtradas);
             return;

@@ -32,9 +32,10 @@
 
 /**
  * @swagger
- * /v1/resenas:
+ * api/v1/resenas:
  *  post:
- *    summary: crea una nueva reseña
+ *    summary: Crear Reseña
+ *    description: Dar de alta una Reseña. Requiere autenticación Bearer
  *    tags: [Resena]
  *    requestBody:
  *      required: true
@@ -45,15 +46,18 @@
  *            $ref: '#/components/schemas/Resena'
  *    responses:
  *      201:
- *        description: nueva reseña fue creada!
+ *        description: Nueva Reseña fue creada!
+ *      400:
+ *        description: Error en la petición
  */
 
 //Actualizar reseña
 /**
  * @swagger
- * /v1/resenas/{id}:
+ * api/v1/resenas/{id}:
  *  patch:
- *    summary: actualizar una reseña
+ *    summary: Actualizar Reseña
+ *    description: Actualizar datos de una Reseña. Requiere autenticación Bearer
  *    tags: [Resena]
  *    parameters:
  *      - in: path
@@ -71,22 +75,25 @@
  *            $ref: '#/components/schemas/Resena'
 *    responses:
  *      200:
- *        description: reseña actualizada
+ *        description: Reseña actualizada
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Resena'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: reseña no encontrada        
+ *        description: Reseña no encontrada        
  */
 
 //Eliminar reseña
 /**
  * @swagger
- * /v1/resenas/{id}:
+ * api/v1/resenas/{id}:
  *  delete:
- *    summary: eliminar una reseña
+ *    summary: Eliminar Reseña
+ *    description: Dar de baja una Reseña. Requiere autenticación Bearer
  *    tags: [Resena]
  *    parameters:
  *      - in: path
@@ -97,23 +104,26 @@
  *        description: id de la reseña
  *    responses:
  *      200:
- *        description: reseña eliminada
+ *        description: Reseña eliminada
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Resena'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: reseña no encontrada        
+ *        description: Reseña no encontrada        
  */
 
 //Obtener todas las reseñas
 //filtrado de reseñas por alumno o actividad por el body
 /**
  * @swagger
- * /v1/resenas:
+ * api/v1/resenas:
  *  get:
- *    summary: obtener todas las reseñas
+ *    summary: Obtener Reseñas
+ *    description: Obtener todas las Reseñas. Requiere autenticación Bearer
  *    tags: [Resena]
  *    parameters:
  *      - in: query
@@ -130,21 +140,26 @@
  *        description: id de la actividad
  *    responses:
  *      200:
- *        description: Todas las reseñas
+ *        description: Todas las Reseñas
  *        content:
  *          application/json:
  *            schema:
  *              type: array
  *              items: 
  *                $ref: '#/components/schemas/Resena'
+ *      400:
+ *        description: Error en la petición
+ *      404: 
+ *        description: Lista de Reseñas vacía
  */
 
 //Obtener reseña por id
 /**
  * @swagger
- * /v1/resenas/{id}:
+ * api/v1/resenas/{id}:
  *  get:
- *    summary: obtiene una reseña
+ *    summary: Obtener Reseña
+ *    description: Obtener una Reseña por ID. Requiere autenticación Bearer
  *    tags: [Resena]
  *    parameters:
  *      - in: path
@@ -155,12 +170,14 @@
  *        description: id de la reseña
  *    responses:
  *      200:
- *        description: Todas las reseñas
+ *        description: Reseña seleccionada
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Resena'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: reseña no encontrada        
+ *        description: Reseña no encontrada        
  */

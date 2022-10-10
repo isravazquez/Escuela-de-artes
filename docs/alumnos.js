@@ -32,9 +32,10 @@
 
 /**
  * @swagger
- * /v1/alumnos:
+ * api/v1/alumnos:
  *  post:
- *    summary: da de alta a un alumno
+ *    summary: Crear Alumno
+ *    description: Dar de alta un Alumno. Requiere autenticación Bearer
  *    tags: [Alumno]
  *    requestBody:
  *      required: true
@@ -45,15 +46,18 @@
  *            $ref: '#/components/schemas/Alumno'
  *    responses:
  *      201:
- *        description: nuevo alumno fue creado!
+ *        description: Nuevo Alumno fue creado!
+ *      400:
+ *        description: Error en la petición
  */
 
 //Actualizar alumno
 /**
  * @swagger
- * /v1/alumnos/{id}:
+ * api/v1/alumnos/{id}:
  *  patch:
- *    summary: actualizar datos alumno
+ *    summary: Actualizar Alumno
+ *    description: Actualizar datos de un Alumno. Requiere autenticación Bearer
  *    tags: [Alumno]
  *    parameters:
  *      - in: path
@@ -71,22 +75,25 @@
  *            $ref: '#/components/schemas/Alumno'
 *    responses:
  *      200:
- *        description: alumno actualizado
+ *        description: Alumno actualizado
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Alumno'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: alumno no encontrado       
+ *        description: Alumno no encontrado       
  */
 
 //Eliminar alumno
 /**
  * @swagger
- * /v1/alumnos/{id}:
+ * api/v1/alumnos/{id}:
  *  delete:
- *    summary: eliminar a un alumno
+ *    summary: Eliminar Alumno
+ *    description: Dar de baja una Alumno. Requiere autenticación Bearer
  *    tags: [Alumno]
  *    parameters:
  *      - in: path
@@ -97,23 +104,26 @@
  *        description: id del alumno
  *    responses:
  *      200:
- *        description: alumno eliminado
+ *        description: Alumno eliminado
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Alumno'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: alumno no encontrado      
+ *        description: Alumno no encontrado      
  */
 
 //Obtener todos los alumnos
 //filtrado de alumnos por nombre, apellido o email
 /**
  * @swagger
- * /v1/alumnos:
+ * api/v1/alumnos:
  *  get:
- *    summary: obtener todos los alumnos
+ *    summary: Obtener Alumnos
+ *    description: Obtener todos los Alumnos. Requiere autenticación Bearer
  *    tags: [Alumno]
  *    parameters:
  *      - in: query
@@ -136,21 +146,26 @@
  *        description: email del alumno
  *    responses:
  *      200:
- *        description: Todos los alumnos
+ *        description: Todos los Alumnos
  *        content:
  *          application/json:
  *            schema:
  *              type: array
  *              items: 
  *                $ref: '#/components/schemas/Alumno'
+ *      400:
+ *        description: Error en la petición
+ *      404: 
+ *        description: Lista de Alumnos vacía
  */
 
 //Obtener alumno por id
 /**
  * @swagger
- * /v1/alumnos/{id}:
+ * api/v1/alumnos/{id}:
  *  get:
- *    summary: obtiene un alumno
+ *    summary: Obtener Alumno
+ *    description: Obtener un Alumno por ID. Requiere autenticación Bearer
  *    tags: [Alumno]
  *    parameters:
  *      - in: path
@@ -161,12 +176,14 @@
  *        description: id del alumno
  *    responses:
  *      200:
- *        description: Todos los alumnos
+ *        description: Alumno seleccionado
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Alumno'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: alumno no encontrado        
+ *        description: Alumno no encontrado        
  */

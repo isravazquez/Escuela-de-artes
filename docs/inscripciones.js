@@ -23,9 +23,10 @@
 
 /**
  * @swagger
- * /v1/inscripciones:
+ * api/v1/inscripciones:
  *  post:
- *    summary: crea una inscripción
+ *    summary: Crear Inscripción
+ *    description: Dar de alta una Inscripción. Requiere autenticación Bearer
  *    tags: [Inscripcion]
  *    requestBody:
  *      required: true
@@ -36,15 +37,18 @@
  *            $ref: '#/components/schemas/Inscripcion'
  *    responses:
  *      201:
- *        description: nueva inscripción fue creada!
+ *        description: Nueva Inscripción fue creada!
+ *      400:
+ *        description: Error en la petición
  */
 
 //Actualizar inscripción
 /**
  * @swagger
- * /v1/inscripciones/{id}:
+ * api/v1/inscripciones/{id}:
  *  patch:
- *    summary: actualizar una inscripción
+ *    summary: Actualizar Inscripción
+ *    description: Actualizar datos de una Inscripción. Requiere autenticación Bearer
  *    tags: [Inscripcion]
  *    parameters:
  *      - in: path
@@ -62,22 +66,25 @@
  *            $ref: '#/components/schemas/Inscripcion'
 *    responses:
  *      200:
- *        description: inscripción actualizada
+ *        description: Inscripción actualizada
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Inscripcion'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: inscripcion no encontrada        
+ *        description: Inscripción no encontrada        
  */
 
 //Eliminar inscripcion
 /**
  * @swagger
- * /v1/inscripciones/{id}:
+ * api/v1/inscripciones/{id}:
  *  delete:
- *    summary: eliminar una inscripcion
+ *    summary: Eliminar Inscripcion
+ *    description: Dar de baja una Inscripción. Requiere autenticación Bearer
  *    tags: [Inscripcion]
  *    parameters:
  *      - in: path
@@ -88,23 +95,26 @@
  *        description: id de la inscripcion
  *    responses:
  *      200:
- *        description: inscripcion eliminada
+ *        description: Inscripcion eliminada
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Inscripcion'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: inscripcion no encontrada        
+ *        description: Inscripción no encontrada        
  */
 
 //Obtener todas las inscripciones
 //filtrado de inscripcones por alumno o actividad por el body
 /**
  * @swagger
- * /v1/inscripciones:
+ * api/v1/inscripciones:
  *  get:
- *    summary: obtener todas las inscripciones
+ *    summary: Obtener Inscripciones
+ *    description: Obtener todas las Inscripciones. Requiere autenticación Bearer
  *    tags: [Inscripcion]
  *    parameters:
  *      - in: query
@@ -121,21 +131,26 @@
  *        description: id de la actividad
  *    responses:
  *      200:
- *        description: Todas las inscripciones
+ *        description: Todas las Inscripciones
  *        content:
  *          application/json:
  *            schema:
  *              type: array
  *              items: 
  *                $ref: '#/components/schemas/Inscripcion'
+ *      400:
+ *        description: Error en la petición
+ *      404: 
+ *        description: Lista de Actividades vacía
  */
 
 //Obtener inscripción por id
 /**
  * @swagger
- * /v1/inscripciones/{id}:
+ * api/v1/inscripciones/{id}:
  *  get:
- *    summary: obtiene una inscripción
+ *    summary: Obtener Inscripción
+ *    description: Obtener una Inscripción por ID. Requiere autenticación Bearer
  *    tags: [Inscripcion]
  *    parameters:
  *      - in: path
@@ -146,12 +161,14 @@
  *        description: id de la inscripción
  *    responses:
  *      200:
- *        description: Todas las inscripciones
+ *        description: Inscripción seleccionada
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Inscripcion'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: inscripción no encontrada        
+ *        description: Inscripción no encontrada        
  */

@@ -42,9 +42,10 @@
 
 /**
  * @swagger
- * /v1/actividades:
+ * api/v1/actividades:
  *  post:
- *    summary: da de alta una actividad
+ *    summary: Crear Actividad
+ *    description: Dar de alta una Actividad. Requiere autenticación Bearer
  *    tags: [Actividad]
  *    requestBody:
  *      required: true
@@ -55,15 +56,18 @@
  *            $ref: '#/components/schemas/Actividad'
  *    responses:
  *      201:
- *        description: nueva actividad fue creada!
+ *        description: Nueva Actividad fue creada!
+ *      400:
+ *        description: Error en la petición
  */
 
 //Actualizar actividad
 /**
  * @swagger
- * /v1/actividades/{id}:
+ * api/v1/actividades/{id}:
  *  patch:
- *    summary: actualizar datos actividad
+ *    summary: Actualizar Actividad
+ *    description: Actualizar datos de una Actividad. Requiere autenticación Bearer
  *    tags: [Actividad]
  *    parameters:
  *      - in: path
@@ -81,22 +85,25 @@
  *            $ref: '#/components/schemas/Actividad'
 *    responses:
  *      200:
- *        description: actividad actualizada
+ *        description: Actividad actualizada
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Actividad'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: actividad no encontrada      
+ *        description: Actividad no encontrada      
  */
 
 //Eliminar actividad
 /**
  * @swagger
- * /v1/actividades/{id}:
+ * api/v1/actividades/{id}:
  *  delete:
- *    summary: eliminar una actividad
+ *    summary: Eliminar Actividad
+ *    description: Dar de baja una Actividad. Requiere autenticación Bearer
  *    tags: [Actividad]
  *    parameters:
  *      - in: path
@@ -107,23 +114,26 @@
  *        description: id de la actividad
  *    responses:
  *      200:
- *        description: actividad eliminada
+ *        description: Actividad eliminada
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Actividad'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: actividad no encontrada   
+ *        description: Actividad no encontrada   
  */
 
 //Obtener todas las actividades
 //filtrado de actividades por nombre, maestro_id o costo
 /**
  * @swagger
- * /v1/actividades:
+ * api/v1/actividades:
  *  get:
- *    summary: obtener todas las actividades
+ *    summary: Obtener Actividades
+ *    description: Obtener todas las Actividades. Requiere autenticación Bearer
  *    tags: [Actividad]
  *    parameters:
  *      - in: query
@@ -146,21 +156,26 @@
  *        description: costo de la actividad
  *    responses:
  *      200:
- *        description: Todas las actividades
+ *        description: Todas las Actividades
  *        content:
  *          application/json:
  *            schema:
  *              type: array
  *              items: 
  *                $ref: '#/components/schemas/Actividad'
+ *      400:
+ *        description: Error en la petición
+ *      404: 
+ *        description: Lista de Actividades vacía
  */
 
 //Obtener actividad por id
 /**
  * @swagger
- * /v1/actividades/{id}:
+ * api/v1/actividades/{id}:
  *  get:
- *    summary: obtiene una actividad
+ *    summary: Obtener Actividad
+ *    description: Obtener una Actividad por ID. Requiere autenticación Bearer
  *    tags: [Actividad]
  *    parameters:
  *      - in: path
@@ -171,12 +186,14 @@
  *        description: id de la actividad
  *    responses:
  *      200:
- *        description: Todas las actividades
+ *        description: Actividad seleccionada
  *        content:
  *          application/json:
  *            schema:
  *              type: object
  *              $ref: '#/components/schemas/Actividad'
+ *      400:
+ *        description: Error en la petición
  *      404:
- *        description: actividad no encontrada      
+ *        description: Actividad no encontrada      
  */

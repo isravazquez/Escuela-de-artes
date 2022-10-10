@@ -116,7 +116,7 @@ async function obtenerAlumnos(req, res) {
             return;
         }
         if (nombre) { 
-            let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].nombre === nombre);
+            let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].nombre == nombre);
             alumnos_filtrados = Object.fromEntries(alumnos_filtrados);
             for (const key in alumnos_filtrados) {
                 delete alumnos_filtrados[key].dataValues.password_salt;
@@ -126,7 +126,7 @@ async function obtenerAlumnos(req, res) {
             return;
         }
         if (apellido) {
-            let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].apellido === apellido);
+            let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].apellido == apellido);
             alumnos_filtrados = Object.fromEntries(alumnos_filtrados);
             for (const key in alumnos_filtrados) {
                 delete alumnos_filtrados[key].dataValues.password_salt;
@@ -136,7 +136,7 @@ async function obtenerAlumnos(req, res) {
             return;
         }
         if (email) {
-            let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].email === email);
+            let alumnos_filtrados = Object.entries(alumnos).filter(alumno => alumno[1].email == email);
             alumnos_filtrados = Object.fromEntries(alumnos_filtrados);
             for (const key in alumnos_filtrados) {
                 delete alumnos_filtrados[key].dataValues.password_salt;

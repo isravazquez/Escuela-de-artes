@@ -32,7 +32,7 @@ async function crearInscripcion(req, res) {
         }
         return err;
     }
-};
+}
 
 //Actualizar datos de una Inscripción
 //Petición requiere un body y un id en parámetros
@@ -73,10 +73,10 @@ async function eliminarInscripcion(req, res) {
         if (!inscripcion) {
             res.status(404).json({ error: `Inscripción ${inscripcion_id} no existe` });
             return;
-        };
+        }
         await Inscripcion.destroy(
             { where: { id: inscripcion_id } }
-        )
+        );
         res.status(200).json({ status: `id inscripción ${inscripcion_id} borrada con éxito`, inscripcion });
         return;
     } catch (err) { //Existen dos tipos de errores posibles en la petición
@@ -113,13 +113,13 @@ async function obtenerInscripciones(req, res) {
             return;
         }
         if (alumno_id) {
-            let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].alumno_id == alumno_id);        //tipo dato diferente, se usa condición con ==
+            let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].alumno_id == alumno_id);       
             inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
             res.json(inscripciones_filtrados);
             return;
         }
         if (actividad_id) {
-            let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].actividad_id == actividad_id);  //tipo dato diferente, se usa condición con ==
+            let inscripciones_filtrados = Object.entries(inscripciones).filter(inscripcion => inscripcion[1].actividad_id == actividad_id); 
             inscripciones_filtrados = Object.fromEntries(inscripciones_filtrados);
             res.json(inscripciones_filtrados);
             return;
