@@ -1,7 +1,8 @@
 # Escuela-de-artes
 
 >Proyecto Final del Modulo 2: Fundamentos de Backend Santander 2022 elaborado por el equipo 14.  
->Objetivo: Desarrollar una API REST de uso interno, para una Escuela de Artes. Realizando una conexión entre la base de datos y nuestra app backend, pudiendo realizar diferentes consultas, inserciones, actualizaciones o eliminaciones, de las diferentes entidades que participan en el proceso. Todo esto siendo validado en todo momento por métodos de autenticación, definiendo un control total por parte de los administradores designados y teniendo control parcial dependiendo de la entidad en cuestión (Maestros o Alumnos). Siempre protegiendo la información sensible con mecanismos de seguridad. Más adelante hay un video ejemplificando todo el funcionamiento.
+>Objetivo: Desarrollar una API REST de uso interno, para una Escuela de Artes.  
+>Se realizó una conexión entre la base de datos y la app backend, con el fin de hacer diferentes consultas, inserciones, actualizaciones o eliminaciones de las diferentes entidades que participan en el proceso. Las cuales son validadas en todo momento por métodos de autenticación, definiendo un control total por parte de los administradores designados y teniendo control parcial dependiendo de la entidad en cuestión (Maestros o Alumnos). Siempre protegiendo la información sensible con mecanismos de seguridad. Más adelante hay un video ejemplificando todo el funcionamiento.
 
 ## Construida con
 - Node.js
